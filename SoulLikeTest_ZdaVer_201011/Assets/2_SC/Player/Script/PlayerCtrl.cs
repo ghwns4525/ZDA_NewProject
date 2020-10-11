@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/Sc/Player/Script/PlayerCtrl.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/2_SC/Player/Script/PlayerCtrl.inputactions'
 
 using System;
 using System.Collections;
@@ -6,10 +6,10 @@ using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 
-public class PlayerCtrl : IInputActionCollection, IDisposable
+public class @PlayerCtrl : IInputActionCollection, IDisposable
 {
     public InputActionAsset asset { get; }
-    public PlayerCtrl()
+    public @PlayerCtrl()
     {
         asset = InputActionAsset.FromJson(@"{
     ""name"": ""PlayerCtrl"",
