@@ -17,13 +17,13 @@ namespace SG
         int currentMhp = 3;
 
         H_PlayerLocomotion thePlayer;
-        Sc_InputHandler InputHandler;
+        H_MinigameInputHandler InputHandler;
 
         // Start is called before the first frame update
         void Start()
         {
             thePlayer = FindObjectOfType<H_PlayerLocomotion>();
-            InputHandler = FindObjectOfType<Sc_InputHandler>();
+            InputHandler = FindObjectOfType<H_MinigameInputHandler>();
             currentHp = thePlayer.t_PlayerHp;
         }
 

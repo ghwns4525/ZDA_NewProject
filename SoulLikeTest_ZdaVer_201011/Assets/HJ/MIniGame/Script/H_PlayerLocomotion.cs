@@ -5,9 +5,9 @@ using SG;
 
 public class H_PlayerLocomotion : MonoBehaviour
 {
-    Sc_PlayerManager playerManager;
+    H_PlayerMng playerManager;
     Transform cameraObject;
-    Sc_InputHandler inputHandler;
+    H_MinigameInputHandler inputHandler;
     public Vector3 moveDirection;
 
     [HideInInspector]
@@ -51,16 +51,14 @@ public class H_PlayerLocomotion : MonoBehaviour
 
     void Start()
     {
-        playerManager = GetComponent<Sc_PlayerManager>();
+        playerManager = GetComponent<H_PlayerMng>();
         rigidbody = GetComponent<Rigidbody>();
-        inputHandler = GetComponent<Sc_InputHandler>();
+        inputHandler = GetComponent<H_MinigameInputHandler>();
         // animatorHandler = GetComponentInChildren<Sc_AnimatorHandler>();
         cameraObject = Camera.main.transform;
         myTrasform = transform;
         // animatorHandler.Initialized();
 
-        playerManager.isGround = true;
-        ignorForGroundCheck = ~(1 << 8 | 1 << 11);
     }
 
     void Update()
@@ -102,14 +100,7 @@ public class H_PlayerLocomotion : MonoBehaviour
     public void HandleMovement(float delta)
     {
 
-        if (inputHandler.rollFlag)
-        {
-            return;
-        }
-        if (playerManager.isInteracting)
-        {
-            return;
-        }
+
         // 카메라에 따라서 내가 가고 싶은 방향이 정해진다. 
         moveDirection = cameraObject.forward * inputHandler.vertical;
         moveDirection += cameraObject.right * inputHandler.horizontal;
@@ -121,10 +112,9 @@ public class H_PlayerLocomotion : MonoBehaviour
 
         float speed = moveSpeed;
 
-        if (inputHandler.sprintFlag && inputHandler.moveAmount > 0.5f)   // 달리는 경우
+        if (inputHandler.moveAmount > 0.5f)   // 달리는 경우
         {
             //speed = sprintSpeed;
-            playerManager.isSprinting = true;
             moveDirection *= speed;
         }
         else    // 걷는 경우
@@ -132,12 +122,10 @@ public class H_PlayerLocomotion : MonoBehaviour
             if (inputHandler.moveAmount < 0.5)
             {
                 moveDirection *= moveSpeed;
-                playerManager.isSprinting = false;
             }
             else
             {
                 moveDirection *= speed;
-                playerManager.isSprinting = false;
             }
         }
 

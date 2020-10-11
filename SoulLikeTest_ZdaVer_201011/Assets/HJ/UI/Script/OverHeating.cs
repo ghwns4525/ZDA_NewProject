@@ -15,14 +15,14 @@ namespace SG
         bool isHeating = false;
         float currentTime = 0;
 
-        Sc_Player thePlayer;
-        Sc_InputHandler InputHandler;
+        H_PlayerLocomotion thePlayer;
+        H_MinigameInputHandler InputHandler;
 
         // Start is called before the first frame update
         void Start()
         {
-            thePlayer = FindObjectOfType<Sc_Player>();
-            InputHandler = FindObjectOfType<Sc_InputHandler>();
+            thePlayer = FindObjectOfType<H_PlayerLocomotion>();
+            InputHandler = FindObjectOfType<H_MinigameInputHandler>();
 
             currentOverHeating = thePlayer.t_overHeating;
             maxOverHeating = thePlayer.t_maxOverHeating;
@@ -74,7 +74,7 @@ namespace SG
                 currentOverHeating -= 0.5f * Time.deltaTime;
             }
             //@Test
-           /* if(InputHandler.testG_Input)
+           /*if(InputHandler.testG_Input)
             {
                 currentOverHeating = 0;
                 Debug.Log(currentOverHeating);

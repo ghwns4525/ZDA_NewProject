@@ -20,12 +20,12 @@ namespace SG
         int count = 0;
         int maxCount;
 
-        Sc_InputHandler inputHandler;
+        H_MinigameInputHandler inputHandler;
 
         // Start is called before the first frame update
         void Start()
         {
-            inputHandler = FindObjectOfType<Sc_InputHandler>();
+            inputHandler = FindObjectOfType<H_MinigameInputHandler>();
             maxCount = menu.Length - 1;
         }
 

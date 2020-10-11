@@ -15,14 +15,14 @@ namespace SG
         int slotNum = 0;
         int maxSlotNum;
 
-        Sc_InputHandler inputHandler;
-        Sc_Player thePlayer;
+        H_MinigameInputHandler inputHandler;
+        H_PlayerLocomotion thePlayer;
 
         // Start is called before the first frame update
         void Start()
         {
-            inputHandler = FindObjectOfType<Sc_InputHandler>();
-            thePlayer = FindObjectOfType<Sc_Player>();
+            inputHandler = FindObjectOfType<H_MinigameInputHandler>();
+            thePlayer = FindObjectOfType<H_PlayerLocomotion>();
             maxSlotNum = ItemSprite.Length;
             for(int i = 0; i < maxSlotNum; i++)
             {

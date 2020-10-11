@@ -17,9 +17,9 @@ public class Menu : MonoBehaviour
 
     public static bool isGameOver = false;
 
-    Sc_InputHandler inputHandler;
+    H_MinigameInputHandler inputHandler;
     PlayerDamage thePlayerDamage;
-    Sc_Player thePlayer;
+    H_PlayerLocomotion thePlayer;
     TurretText theText;
     StageClear theClear;
     Turret [] theTurret;
@@ -33,9 +33,9 @@ public class Menu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        inputHandler = FindObjectOfType<Sc_InputHandler>();
+        inputHandler = FindObjectOfType<H_MinigameInputHandler>();
         thePlayerDamage = FindObjectOfType<PlayerDamage>();
-        thePlayer = FindObjectOfType<Sc_Player>();
+        thePlayer = FindObjectOfType<H_PlayerLocomotion>();
         theText = FindObjectOfType<TurretText>();
         theClear = FindObjectOfType<StageClear>();
         theTurret = FindObjectsOfType<Turret>();
@@ -51,7 +51,7 @@ public class Menu : MonoBehaviour
     void Update()
     {
         //@Test
-      /*  if (inputHandler.menu_Input)
+        if (inputHandler.menu_Input)
         {
             MenuOption();
         }
@@ -70,7 +70,7 @@ public class Menu : MonoBehaviour
             {
                 GameRestart();
             }
-        }*/
+        }
     }
 
     public void MenuOption()

@@ -14,7 +14,7 @@ namespace SG
         float h = 0;
         float lookAngle;
 
-        Sc_InputHandler InputHandler;
+        H_MinigameInputHandler InputHandler;
         Sc_CameraHandler sc_cameraHandler;
 
 
@@ -23,7 +23,7 @@ namespace SG
         // Start is called before the first frame update
         void Start()
         {
-            InputHandler = FindObjectOfType<Sc_InputHandler>();
+            InputHandler = FindObjectOfType<H_MinigameInputHandler>();
             sc_cameraHandler = FindObjectOfType<Sc_CameraHandler>();
         }
 

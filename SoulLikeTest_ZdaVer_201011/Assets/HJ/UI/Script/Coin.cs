@@ -12,14 +12,14 @@ namespace SG
 
         int currentJunk;
 
-        Sc_Player thePlayer;
-        Sc_InputHandler InputHandler;
+        H_PlayerLocomotion thePlayer;
+        H_MinigameInputHandler InputHandler;
 
         // Start is called before the first frame update
         void Start()
         {
-            thePlayer = FindObjectOfType<Sc_Player>();
-            InputHandler = FindObjectOfType<Sc_InputHandler>();
+            thePlayer = FindObjectOfType<H_PlayerLocomotion>();
+            InputHandler = FindObjectOfType<H_MinigameInputHandler>();
             currentJunk = thePlayer.t_Junk;
         }
 
@@ -33,11 +33,11 @@ namespace SG
 
         public void IncreaseJunk()
         {
-            /*if(InputHandler.testF_Input)    // testJ_Input = F키
+            if(InputHandler.testF_Input)    // testJ_Input = F키
             {
                 currentJunk += 10;
                 Debug.Log(currentJunk);
-            }*/
+            }
         }
 
         public void DecreaseJunk()

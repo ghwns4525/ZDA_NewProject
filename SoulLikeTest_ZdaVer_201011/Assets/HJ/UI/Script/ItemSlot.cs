@@ -13,12 +13,12 @@ namespace SG
         int Count = 0;
         int MaxCount;
 
-        Sc_InputHandler inputHandler;
+        H_MinigameInputHandler inputHandler;
         // Start is called before the first frame update
         void Start()
         {
             MaxCount = Slots.Length - 1;
-            inputHandler = FindObjectOfType<Sc_InputHandler>();
+            inputHandler = FindObjectOfType<H_MinigameInputHandler>();
             for(int i = 0; i < Slots.Length; i++)
             {
                 for(int j = 0; j < Slots[i].transform.childCount; j++)

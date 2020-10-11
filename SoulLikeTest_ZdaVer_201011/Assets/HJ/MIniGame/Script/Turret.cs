@@ -63,7 +63,7 @@ public class Turret : MonoBehaviour
 
     TurretText theText;
     Door[] theDoor;
-    Sc_Player thePlayer;
+    H_PlayerLocomotion thePlayer;
     PlayerDamage theDamage;
     ECMSystem theECM;
 
@@ -73,7 +73,7 @@ public class Turret : MonoBehaviour
         turretTr = GetComponent<Transform>();
         theText = FindObjectOfType<TurretText>();
         theDoor = FindObjectsOfType<Door>();
-        thePlayer = FindObjectOfType<Sc_Player>();
+        thePlayer = FindObjectOfType<H_PlayerLocomotion>();
         theDamage = FindObjectOfType<PlayerDamage>();
         theECM = FindObjectOfType<ECMSystem>();
         currentReloadTime = reloadTime;

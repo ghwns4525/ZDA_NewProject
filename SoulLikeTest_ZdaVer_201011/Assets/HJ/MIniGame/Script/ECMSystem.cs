@@ -21,19 +21,19 @@ public class ECMSystem : MonoBehaviour
     [HideInInspector]
     public float maxSpeed = 0;
 
-    Sc_Player sc_Player;
+    H_PlayerLocomotion H_Player;
     PlayerDamage theDamage;
     
 
     // Start is called before the first frame update
     void Start()
     {
-        sc_Player = FindObjectOfType<Sc_Player>();
+        H_Player = FindObjectOfType<H_PlayerLocomotion>();
         theDamage = FindObjectOfType<PlayerDamage>();
         mesh = GetComponent<MeshRenderer>();
         ECMTransform = GetComponent<Transform>();
         ECMTransform.localScale = new Vector3(Scale , 0.1f, Scale);
-        maxSpeed = sc_Player.moveSpeed;
+        maxSpeed = H_Player.moveSpeed;
         slowSpeed = maxSpeed * SpeedLimit;
     }
 
@@ -49,7 +49,7 @@ public class ECMSystem : MonoBehaviour
             if (collider.gameObject.CompareTag("Player"))
             {
                 theDamage.isSlow = true;
-                sc_Player.moveSpeed = slowSpeed;
+                H_Player.moveSpeed = slowSpeed;
             }
         }
     }
@@ -67,7 +67,7 @@ public class ECMSystem : MonoBehaviour
                 currentTime -= BlinkTime;
                 if(!theDamage.isSlow)
                 {
-                    sc_Player.moveSpeed = slowSpeed;
+                    H_Player.moveSpeed = slowSpeed;
                     theDamage.isSlow = true;
                 }
 
@@ -83,7 +83,7 @@ public class ECMSystem : MonoBehaviour
         {
             if (collider.gameObject.CompareTag("Player"))
             {
-                sc_Player.moveSpeed = maxSpeed;
+                H_Player.moveSpeed = maxSpeed;
                 mesh.enabled = false;
                 theDamage.isSlow = false;
             }
@@ -94,7 +94,7 @@ public class ECMSystem : MonoBehaviour
     {
         if (theDamage.isSlow)
         {
-            sc_Player.moveSpeed = maxSpeed;
+            H_Player.moveSpeed = maxSpeed;
             theDamage.isSlow = false;
         }
     }

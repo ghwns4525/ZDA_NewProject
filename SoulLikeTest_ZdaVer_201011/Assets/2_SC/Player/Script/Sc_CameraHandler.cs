@@ -42,7 +42,7 @@ namespace SG
         public float cameraSphereRadius = 0.2f;
         public float cameraCollisionOffSet = 0.2f;
         public float minCollisionOffSet = 0.2f;
-        [SerializeField]
+        //[SerializeField]
         Sc_PlayerLocomotionHandler sc_PlayerLocomotionHandler;
 
 
@@ -58,7 +58,7 @@ namespace SG
             myTransform = transform;
             defaultPostion = cameraPivotTransform.localPosition.z;
             ignoreLayers = ~(1 << 8 | 1 << 9 | 1 << 10);// 8번 9번 10번 레이어를
-            targetTransform = FindObjectOfType<Sc_PlayerManager>().transform;
+            targetTransform = FindObjectOfType<H_PlayerMng>().transform;
             sc_PlayerLocomotionHandler = FindObjectOfType<Sc_PlayerLocomotionHandler>();
         }
 

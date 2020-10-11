@@ -293,6 +293,52 @@ public class @PlayerCtrl : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""UI"",
+            ""id"": ""cc96a109-c44c-4cdb-9340-bbcb7e8de39e"",
+            ""actions"": [
+                {
+                    ""name"": ""Menu"",
+                    ""type"": ""Button"",
+                    ""id"": ""60cfb1eb-2bb1-40bc-a2d1-7a362def1f39"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Test_F"",
+                    ""type"": ""Button"",
+                    ""id"": ""b1e68e76-d972-4f9d-9167-ac261c40fefc"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""95b7e3ea-1e41-4a97-a4d7-77b905b555f2"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Menu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d322ee81-750f-40f3-bf83-ddcf6de815a1"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Test_F"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -313,6 +359,10 @@ public class @PlayerCtrl : IInputActionCollection, IDisposable
         // Test
         m_Test = asset.FindActionMap("Test", throwIfNotFound: true);
         m_Test_Test = m_Test.FindAction("Test", throwIfNotFound: true);
+        // UI
+        m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
+        m_UI_Menu = m_UI.FindAction("Menu", throwIfNotFound: true);
+        m_UI_Test_F = m_UI.FindAction("Test_F", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -513,6 +563,47 @@ public class @PlayerCtrl : IInputActionCollection, IDisposable
         }
     }
     public TestActions @Test => new TestActions(this);
+
+    // UI
+    private readonly InputActionMap m_UI;
+    private IUIActions m_UIActionsCallbackInterface;
+    private readonly InputAction m_UI_Menu;
+    private readonly InputAction m_UI_Test_F;
+    public struct UIActions
+    {
+        private @PlayerCtrl m_Wrapper;
+        public UIActions(@PlayerCtrl wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Menu => m_Wrapper.m_UI_Menu;
+        public InputAction @Test_F => m_Wrapper.m_UI_Test_F;
+        public InputActionMap Get() { return m_Wrapper.m_UI; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(UIActions set) { return set.Get(); }
+        public void SetCallbacks(IUIActions instance)
+        {
+            if (m_Wrapper.m_UIActionsCallbackInterface != null)
+            {
+                @Menu.started -= m_Wrapper.m_UIActionsCallbackInterface.OnMenu;
+                @Menu.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnMenu;
+                @Menu.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnMenu;
+                @Test_F.started -= m_Wrapper.m_UIActionsCallbackInterface.OnTest_F;
+                @Test_F.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnTest_F;
+                @Test_F.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnTest_F;
+            }
+            m_Wrapper.m_UIActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Menu.started += instance.OnMenu;
+                @Menu.performed += instance.OnMenu;
+                @Menu.canceled += instance.OnMenu;
+                @Test_F.started += instance.OnTest_F;
+                @Test_F.performed += instance.OnTest_F;
+                @Test_F.canceled += instance.OnTest_F;
+            }
+        }
+    }
+    public UIActions @UI => new UIActions(this);
     public interface IPlayerMovementActions
     {
         void OnMovement(InputAction.CallbackContext context);
@@ -531,5 +622,10 @@ public class @PlayerCtrl : IInputActionCollection, IDisposable
     public interface ITestActions
     {
         void OnTest(InputAction.CallbackContext context);
+    }
+    public interface IUIActions
+    {
+        void OnMenu(InputAction.CallbackContext context);
+        void OnTest_F(InputAction.CallbackContext context);
     }
 }

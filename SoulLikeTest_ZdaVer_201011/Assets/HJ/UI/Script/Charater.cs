@@ -45,14 +45,14 @@ namespace SG
         int Quest_num = 0;
 
 
-        Sc_Player Player;
-        Sc_InputHandler InputHandler;
+        H_PlayerLocomotion Player;
+        H_MinigameInputHandler InputHandler;
 
         // Start is called before the first frame update
         void Start()
         {
-            Player = FindObjectOfType<Sc_Player>();
-            InputHandler = FindObjectOfType<Sc_InputHandler>();
+            Player = FindObjectOfType<H_PlayerLocomotion>();
+            InputHandler = FindObjectOfType<H_MinigameInputHandler>();
             Class_view.overrideSprite = Class[4];
             txt_Class.text = ClassKinds[0];
         }
