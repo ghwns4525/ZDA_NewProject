@@ -58,7 +58,7 @@ namespace SG
             myTransform = transform;
             defaultPostion = cameraPivotTransform.localPosition.z;
             ignoreLayers = ~(1 << 8 | 1 << 9 | 1 << 10);// 8번 9번 10번 레이어를
-            targetTransform = FindObjectOfType<H_PlayerMng>().transform;
+            targetTransform = FindObjectOfType<Sc_PlayerLocomotionHandler>().transform;
             sc_PlayerLocomotionHandler = FindObjectOfType<Sc_PlayerLocomotionHandler>();
         }
 

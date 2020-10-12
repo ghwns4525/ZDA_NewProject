@@ -43,8 +43,7 @@ namespace SG
         {
             if (currentOverHeating < maxOverHeating)
             {
-                //@Test
-                /*if (InputHandler.testR_Input)
+                if (InputHandler.testR_Input)
                 {
                     currentOverHeating++;
                     Debug.Log(currentOverHeating);
@@ -58,7 +57,7 @@ namespace SG
                             currentTime = 0;
                         }
                     }
-                }*/
+                }
             }
             else
             {
@@ -73,12 +72,11 @@ namespace SG
             {
                 currentOverHeating -= 0.5f * Time.deltaTime;
             }
-            //@Test
-           /*if(InputHandler.testG_Input)
+           if(InputHandler.testG_Input)
             {
                 currentOverHeating = 0;
                 Debug.Log(currentOverHeating);
-            }*/
+            }
         }
     }
 }

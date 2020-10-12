@@ -37,11 +37,10 @@ namespace SG
 
         public void DecreaseHp()
         {
-            //@Test
-       /*     if(InputHandler.testG_Input) // test_Input = H버튼
+            if(InputHandler.testG_Input)
             {
                 currentHp--;
-            }*/
+            }
         }
 
         public void DecreaseMinigameHp()

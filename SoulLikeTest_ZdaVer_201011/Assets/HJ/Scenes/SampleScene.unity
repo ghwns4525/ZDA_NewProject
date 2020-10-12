@@ -33004,7 +33004,7 @@ MonoBehaviour:
   t_Junk: 0
   t_overHeating: 0
   t_maxOverHeating: 10
-  t_item: 
+  t_item: 0a000000140000001e00000028000000
   t_Passive1: 1
   t_Passive2: 1
   t_Passive3: 1

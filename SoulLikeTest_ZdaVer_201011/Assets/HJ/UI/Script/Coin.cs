@@ -44,12 +44,11 @@ namespace SG
         {
             if (currentJunk != 0)
             {
-                //@Test
-               /* if (InputHandler.testG_Input)    // test_Input = H키
+               if (InputHandler.testG_Input)
                 {
                     currentJunk -= 10;
                     Debug.Log(currentJunk);
-                }*/
+                }
             }
         }
     }

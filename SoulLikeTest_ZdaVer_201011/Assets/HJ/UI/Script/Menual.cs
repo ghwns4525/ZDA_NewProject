@@ -32,8 +32,7 @@ namespace SG
         // Update is called once per frame
         void Update()
         {
-            //@Test
-           /* if(inputHandler.testDown_Input)
+           if(inputHandler.testDown_Input)
             {
                 if (count < maxCount)
                 {
@@ -50,7 +49,7 @@ namespace SG
                     //Img_explanation.sprite = Img_explanationGroup[count].sprite;
                     //Txt_explanation.text = Txt_explanationGroup[count];
                 }
-            }*/
+            }
             Txt_explanation.text = Txt_explanationGroup[count];
             //Img_explanation.sprite = Img_explanationGroup[count].sprite;
             Debug.Log(count);

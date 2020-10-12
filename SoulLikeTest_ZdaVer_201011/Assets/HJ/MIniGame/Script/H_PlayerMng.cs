@@ -43,14 +43,17 @@ public class H_PlayerMng : MonoBehaviour
         inputHandler.fire_Input = false;
         inputHandler.menu_Input = false;
         inputHandler.testF_Input = false;
-        //inputHandler.anykey_Input = false;
-        /*inputHandler.testG_Input = false;
-        inputHandler.testR_Input = false;
+        inputHandler.testG_Input = false;
         inputHandler.testQ_Input = false;
         inputHandler.testE_Input = false;
-        inputHandler.testV_Input = false;
+        inputHandler.testR_Input = false;
         inputHandler.testUp_Input = false;
         inputHandler.testDown_Input = false;
+        inputHandler.anykey_Input = false;
+        /*
+        
+        inputHandler.testV_Input = false;
+        
         inputHandler.testZ_Input = false;*/
     }
     private void FixedUpdate()

@@ -76,14 +76,19 @@ public class H_MinigameInputHandler : MonoBehaviour
         FireInput(delta);
         MenuInput(delta);
         TestFKeyInput(delta);
-        /*        AnyKeyInput(delta);
-                TestKeyInput(delta);
-                TestIKeyInput(delta);
-                TestQKeyInput(delta);
-                TestEKeyInput(delta);
+        TestGKeyInput(delta);
+        TestQKeyInput(delta);
+        TestEKeyInput(delta);
+        TestRKeyInput(delta);
+        TestUpKeyInput(delta);
+        TestDownKeyInput(delta);
+        TestAnyKeyInput(delta);
+        /*        
+                
+                
+                
                 TestVKeyInput(delta);
-                TestUpKeyInput(delta);
-                TestDownKeyInput(delta);
+                
                 TestZKeyInput(delta);*/
     }
     public void MoveInput(float delta)
@@ -124,45 +129,49 @@ public class H_MinigameInputHandler : MonoBehaviour
     {
         inputActions.UI.Test_F.performed += i => testF_Input = true;
     }
-
-    /*    public void AnyKeyInput(float delta)
-        {
-            inputActions.PlayerMovement.AnyKey.performed += i => anykey_Input = true;
-        }*/
+    public void TestGKeyInput(float delta)
+    {
+        inputActions.UI.Test_G.performed += i => testG_Input = true;
+    }
+    public void TestQKeyInput(float delta)
+    {
+        inputActions.UI.Test_Q.performed += i => testQ_Input = true;
+    }
+    public void TestEKeyInput(float delta)
+    {
+        inputActions.UI.Test_E.performed += i => testE_Input = true;
+    }
+    public void TestRKeyInput(float delta)
+    {
+        inputActions.UI.Test_R.performed += i => testR_Input = true;
+    }
+    public void TestUpKeyInput(float delta)
+    {
+        inputActions.UI.Test_Up.performed += i => testUp_Input = true;
+    }
+    public void TestDownKeyInput(float delta)
+    {
+        inputActions.UI.Test_Down.performed += i => testDown_Input = true;
+    }
+        
+    public void TestAnyKeyInput(float delta)    
+    {
+        inputActions.UI.Test_Anykey.performed += i => anykey_Input = true;        
+    }
 
     // UI Test용
     /*
-        public void TestKeyInput(float delta)
-        {
-            inputActions.Test.Test_G.performed += i => testG_Input = true;
-        }
 
 
 
-        public void TestIKeyInput(float delta)
-        {
-            inputActions.Test.Test_R.performed += i => testR_Input = true;
-        }
-        public void TestQKeyInput(float delta)
-        {
-            inputActions.Test.Test_Q.performed += i => testQ_Input = true;
-        }
-        public void TestEKeyInput(float delta)
-        {
-            inputActions.Test.Test_E.performed += i => testE_Input = true;
-        }
+
+        
+
         public void TestVKeyInput(float delta)
         {
             inputActions.Test.Test_V.performed += i => testV_Input = true;
         }
-        public void TestUpKeyInput(float delta)
-        {
-            inputActions.Test.Test_Up.performed += i => testUp_Input = true;
-        }
-        public void TestDownKeyInput(float delta)
-        {
-            inputActions.Test.Test_Down.performed += i => testDown_Input = true;
-        }
+        
         public void TestZKeyInput(float delta)
         {
             inputActions.Test.Test_Z.performed += i => testZ_Input = true;

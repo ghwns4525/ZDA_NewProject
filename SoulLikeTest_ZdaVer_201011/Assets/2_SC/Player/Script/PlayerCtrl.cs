@@ -313,6 +313,62 @@ public class @PlayerCtrl : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Test_G"",
+                    ""type"": ""Button"",
+                    ""id"": ""5b54ec84-6274-4ef9-b055-212f8e5234fa"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Test_Q"",
+                    ""type"": ""Button"",
+                    ""id"": ""54de1ee1-7697-4247-9948-b3a1abdb5ece"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Test_E"",
+                    ""type"": ""Button"",
+                    ""id"": ""19a5f3cd-6ef9-425a-80ec-1ff56af210e0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Test_R"",
+                    ""type"": ""Button"",
+                    ""id"": ""640eca32-5330-42c2-8e56-f22a50cb99d4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Test_Up"",
+                    ""type"": ""Button"",
+                    ""id"": ""445fca51-7dc6-41da-97ab-334c1c88b92d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Test_Down"",
+                    ""type"": ""Button"",
+                    ""id"": ""754c861e-de9d-46df-929e-2844d654f8f2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Test_Anykey"",
+                    ""type"": ""Button"",
+                    ""id"": ""ee74fa8e-24f8-4786-9563-0afbb0356180"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -335,6 +391,83 @@ public class @PlayerCtrl : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Test_F"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bd05d9d7-86df-4b64-88ba-d05d1ee7a963"",
+                    ""path"": ""<Keyboard>/g"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Test_G"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e11508d4-e1f8-4f9d-b0f4-c7862430bf78"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Test_Q"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5d357556-b420-4d88-886c-6b4f7ec4cbf4"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Test_E"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""08874238-2fd5-4c67-a6fb-303c240cd5a3"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Test_R"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2bab4e5e-f5c4-4e53-a6e9-713136f6d0e3"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Test_Up"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e91121fc-9cd7-4e8a-80d3-147588f49513"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Test_Down"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""14caf109-7c4b-4bed-a862-816fd42da2a6"",
+                    ""path"": ""<Keyboard>/anyKey"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Test_Anykey"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -363,6 +496,13 @@ public class @PlayerCtrl : IInputActionCollection, IDisposable
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Menu = m_UI.FindAction("Menu", throwIfNotFound: true);
         m_UI_Test_F = m_UI.FindAction("Test_F", throwIfNotFound: true);
+        m_UI_Test_G = m_UI.FindAction("Test_G", throwIfNotFound: true);
+        m_UI_Test_Q = m_UI.FindAction("Test_Q", throwIfNotFound: true);
+        m_UI_Test_E = m_UI.FindAction("Test_E", throwIfNotFound: true);
+        m_UI_Test_R = m_UI.FindAction("Test_R", throwIfNotFound: true);
+        m_UI_Test_Up = m_UI.FindAction("Test_Up", throwIfNotFound: true);
+        m_UI_Test_Down = m_UI.FindAction("Test_Down", throwIfNotFound: true);
+        m_UI_Test_Anykey = m_UI.FindAction("Test_Anykey", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -569,12 +709,26 @@ public class @PlayerCtrl : IInputActionCollection, IDisposable
     private IUIActions m_UIActionsCallbackInterface;
     private readonly InputAction m_UI_Menu;
     private readonly InputAction m_UI_Test_F;
+    private readonly InputAction m_UI_Test_G;
+    private readonly InputAction m_UI_Test_Q;
+    private readonly InputAction m_UI_Test_E;
+    private readonly InputAction m_UI_Test_R;
+    private readonly InputAction m_UI_Test_Up;
+    private readonly InputAction m_UI_Test_Down;
+    private readonly InputAction m_UI_Test_Anykey;
     public struct UIActions
     {
         private @PlayerCtrl m_Wrapper;
         public UIActions(@PlayerCtrl wrapper) { m_Wrapper = wrapper; }
         public InputAction @Menu => m_Wrapper.m_UI_Menu;
         public InputAction @Test_F => m_Wrapper.m_UI_Test_F;
+        public InputAction @Test_G => m_Wrapper.m_UI_Test_G;
+        public InputAction @Test_Q => m_Wrapper.m_UI_Test_Q;
+        public InputAction @Test_E => m_Wrapper.m_UI_Test_E;
+        public InputAction @Test_R => m_Wrapper.m_UI_Test_R;
+        public InputAction @Test_Up => m_Wrapper.m_UI_Test_Up;
+        public InputAction @Test_Down => m_Wrapper.m_UI_Test_Down;
+        public InputAction @Test_Anykey => m_Wrapper.m_UI_Test_Anykey;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -590,6 +744,27 @@ public class @PlayerCtrl : IInputActionCollection, IDisposable
                 @Test_F.started -= m_Wrapper.m_UIActionsCallbackInterface.OnTest_F;
                 @Test_F.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnTest_F;
                 @Test_F.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnTest_F;
+                @Test_G.started -= m_Wrapper.m_UIActionsCallbackInterface.OnTest_G;
+                @Test_G.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnTest_G;
+                @Test_G.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnTest_G;
+                @Test_Q.started -= m_Wrapper.m_UIActionsCallbackInterface.OnTest_Q;
+                @Test_Q.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnTest_Q;
+                @Test_Q.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnTest_Q;
+                @Test_E.started -= m_Wrapper.m_UIActionsCallbackInterface.OnTest_E;
+                @Test_E.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnTest_E;
+                @Test_E.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnTest_E;
+                @Test_R.started -= m_Wrapper.m_UIActionsCallbackInterface.OnTest_R;
+                @Test_R.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnTest_R;
+                @Test_R.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnTest_R;
+                @Test_Up.started -= m_Wrapper.m_UIActionsCallbackInterface.OnTest_Up;
+                @Test_Up.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnTest_Up;
+                @Test_Up.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnTest_Up;
+                @Test_Down.started -= m_Wrapper.m_UIActionsCallbackInterface.OnTest_Down;
+                @Test_Down.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnTest_Down;
+                @Test_Down.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnTest_Down;
+                @Test_Anykey.started -= m_Wrapper.m_UIActionsCallbackInterface.OnTest_Anykey;
+                @Test_Anykey.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnTest_Anykey;
+                @Test_Anykey.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnTest_Anykey;
             }
             m_Wrapper.m_UIActionsCallbackInterface = instance;
             if (instance != null)
@@ -600,6 +775,27 @@ public class @PlayerCtrl : IInputActionCollection, IDisposable
                 @Test_F.started += instance.OnTest_F;
                 @Test_F.performed += instance.OnTest_F;
                 @Test_F.canceled += instance.OnTest_F;
+                @Test_G.started += instance.OnTest_G;
+                @Test_G.performed += instance.OnTest_G;
+                @Test_G.canceled += instance.OnTest_G;
+                @Test_Q.started += instance.OnTest_Q;
+                @Test_Q.performed += instance.OnTest_Q;
+                @Test_Q.canceled += instance.OnTest_Q;
+                @Test_E.started += instance.OnTest_E;
+                @Test_E.performed += instance.OnTest_E;
+                @Test_E.canceled += instance.OnTest_E;
+                @Test_R.started += instance.OnTest_R;
+                @Test_R.performed += instance.OnTest_R;
+                @Test_R.canceled += instance.OnTest_R;
+                @Test_Up.started += instance.OnTest_Up;
+                @Test_Up.performed += instance.OnTest_Up;
+                @Test_Up.canceled += instance.OnTest_Up;
+                @Test_Down.started += instance.OnTest_Down;
+                @Test_Down.performed += instance.OnTest_Down;
+                @Test_Down.canceled += instance.OnTest_Down;
+                @Test_Anykey.started += instance.OnTest_Anykey;
+                @Test_Anykey.performed += instance.OnTest_Anykey;
+                @Test_Anykey.canceled += instance.OnTest_Anykey;
             }
         }
     }
@@ -627,5 +823,12 @@ public class @PlayerCtrl : IInputActionCollection, IDisposable
     {
         void OnMenu(InputAction.CallbackContext context);
         void OnTest_F(InputAction.CallbackContext context);
+        void OnTest_G(InputAction.CallbackContext context);
+        void OnTest_Q(InputAction.CallbackContext context);
+        void OnTest_E(InputAction.CallbackContext context);
+        void OnTest_R(InputAction.CallbackContext context);
+        void OnTest_Up(InputAction.CallbackContext context);
+        void OnTest_Down(InputAction.CallbackContext context);
+        void OnTest_Anykey(InputAction.CallbackContext context);
     }
 }

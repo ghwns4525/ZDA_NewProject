@@ -33,14 +33,14 @@ namespace SG
         // Update is called once per frame
         void Update()
         {
-            //@Test
-           /* if (inputHandler.testE_Input)
+            if (inputHandler.testE_Input)
             {
                 slotNum++;
                 if (slotNum > maxSlotNum - 1)
                 {
                     slotNum = 0;
                 }
+                Debug.Log(slotNum);
             }
             if (inputHandler.testQ_Input)
             {
@@ -49,7 +49,9 @@ namespace SG
                 {
                     slotNum = maxSlotNum - 1;
                 }
+                Debug.Log(slotNum);
             }
+            /*
             if (inputHandler.testV_Input)
             {
                 ItemCount[slotNum]--;

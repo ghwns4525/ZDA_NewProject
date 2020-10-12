@@ -215,8 +215,7 @@ namespace SG
         }
         void IncreaseReinforce()
         {
-            //@Test
-          /*  if (InputHandler.testF_Input)
+            if (InputHandler.testF_Input)
             {
                 reinforce++;
                 Quest_num++;
@@ -224,7 +223,7 @@ namespace SG
                 {
                     Quest_num = 0;
                 }
-            }*/
+            }
         }
     }
 }

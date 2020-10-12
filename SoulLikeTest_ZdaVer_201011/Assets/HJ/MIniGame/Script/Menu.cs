@@ -49,8 +49,7 @@ public class Menu : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        //@Test
+    {   
         if (inputHandler.menu_Input)
         {
             MenuOption();
