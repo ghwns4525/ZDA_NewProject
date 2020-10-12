@@ -105,6 +105,7 @@
     <Compile Include="Assets\2_SC\Sc_AnimationIdleExitSetter.cs" />
     <Compile Include="Assets\2_SC\Sc_AnimatorEnterSetter.cs" />
     <Compile Include="Assets\2_SC\Sc_AnimatorRootMotionReset.cs" />
+    <Compile Include="Assets\2_SC\Sc_GameMng.cs" />
     <Compile Include="Assets\2_SC\Sc_isAniPlayReset.cs" />
     <Compile Include="Assets\2_SC\Test_Animator.cs" />
     <Compile Include="Assets\HJ\MIniGame\Script\BulletControll.cs" />

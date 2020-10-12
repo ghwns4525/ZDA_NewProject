@@ -40,6 +40,8 @@ public class Sc_PlayerManager : MonoBehaviour
     public bool isAttackMove; // 공격하면 일정 시간만큼 움직여야 하는데 그것에 대한 값
     public bool attackFlag;
 
+    public bool isBossStage;
+
     [Header("Stamina Status")]
         
 

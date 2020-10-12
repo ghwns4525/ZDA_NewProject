@@ -14,6 +14,7 @@ namespace SG
         Sc_PlayerManager playerManager;
         Transform cameraObject;
         Sc_InputHandler inputHandler;
+        Sc_GameMng sc_GameMng;
         public Vector3 moveDirection;
         public Vector3 moveDirectionNomallized;
 
@@ -46,44 +47,11 @@ namespace SG
         float fallingSpeed = 45;
 
         [Header("LockOn Mode")]
-        public GameObject[] LockOnTargetObjs;
-        public GameObject LockOnTargetObj;
+        //public GameObject LockOnTargetObj;
         [SerializeField]
         private float LockOnCameraRoatationSpeed = 10;
 
-        int lockOnTargetIndex = 0;
-        public int LockOnTargetIndex
-        {
-          
-            get
-            {
-                return lockOnTargetIndex;
-            }
-            set
-            {
-                // 8개 있으면 0~7
-
-                Debug.Log("TargetsIndex : " + lockOnTargetIndex);
-                // 7개 보다 크면 0으로
-
-                // LockOnTargetObjs 예외 처리
-
-                if (LockOnTargetObjs != null)
-                {
-                    if (LockOnTargetObjs.Length - 1 < lockOnTargetIndex)
-                    {
-                        lockOnTargetIndex = 0;
-                    }
-                    // 0보다 작으면 ( 음수가 되면 ) 최대값으로 
-                    else if (lockOnTargetIndex < 0)
-                    {
-                        lockOnTargetIndex = LockOnTargetObjs.Length - 1;
-                    }
-                }
-
-                
-            }
-        }
+        
 
         void Start()
         {
@@ -91,12 +59,15 @@ namespace SG
             rigidbody = GetComponent<Rigidbody>();
             inputHandler = GetComponent<Sc_InputHandler>();
             animatorHandler = GetComponentInChildren<Sc_AnimatorHandler>();
+            sc_GameMng = Sc_GameMng.ins;
+
             cameraObject = Camera.main.transform;
             myTrasform = transform;
             animatorHandler.Initialized();
 
             playerManager.isGround = true;
             ignorForGroundCheck = ~(1 << 8 | 1 << 11);
+            
         }
 
         void Update()
@@ -362,7 +333,7 @@ namespace SG
                 {
                     // 고정모드 True가 됨
                     Sc_CameraHandler.singleton.isLockOnMode = true;
-                    VelocityReset();
+                    VelocityReset(); 
                 }
                 
                 else if (Sc_CameraHandler.singleton.isLockOnMode == true)
@@ -383,39 +354,38 @@ namespace SG
                 // 타겟 모드중이면
                 if (Sc_CameraHandler.singleton.isLockOnMode == true)
                 {
-                    // 보스 Null 이면 보스 없다는것
-                    if (GameObject.FindGameObjectWithTag("Boss") == null)
-                    {
-                        // 일반 몬스터중 제일 가까운 녀석들을 리스트에 담아서 소트함.
-                        EnemysTargeting();
-                    }
+                    Debug.Log("@@@@@@@@@@@@@ "+ sc_GameMng.stageEnum);
 
+                    if (sc_GameMng.stageEnum == Sc_GameMng.StageEnum.BossStage)
+                    {
+                        sc_GameMng.LockOnTargetObj = sc_GameMng.BossObj;
+                    }
+                    else if (sc_GameMng.stageEnum == Sc_GameMng.StageEnum.NomalStage)
+                    {
+                        sc_GameMng.LockOnTargetObj = sc_GameMng.NearEnemyTargetting();
+                    }
                     else
                     {
-                        // 보스 락온 타겟오브젝트로 한다.
-                        LockOnTargetObj = GameObject.FindGameObjectWithTag("Boss");
+                        Debug.LogWarning("타겟 할 게 없어요!!");
+                        sc_GameMng.LockOnTargetObj = null;
                     }
 
-                    Debug.Log(LockOnTargetObj.name);
+                    Debug.Log(Sc_GameMng.ins.LockOnTargetObj.name);
                 }
+                // Flag : 락온 해제
                 else if (Sc_CameraHandler.singleton.isLockOnMode == false)
                 {
-                    LockOnTargetIndex = 0;
-                    LockOnTargetObj = null;
-                    LockOnTargetObjs = null;
+                    Sc_GameMng.ins.NearEnemyTargeReset();
+                    Sc_GameMng.ins.LockOnTargetObj = null;
                 }
             }
 
             // Flag : 마우스 휠을 업다운 했을때 True가 됨.
             if(inputHandler.mouseWheelUpDownFlag)
             {
-                // 예외처리 : 보스를 타겟 했을때는  LockOnTargetObjs는 NUll 이다 이것을 예외처리 해줌.
-                if (LockOnTargetObjs != null)
-                {
-                    // 마우스 휠을 돌리면 타겟이 달라짐 
-                    LockOnTargetObj = LockOnTargetObjs[LockOnTargetIndex];
-                    Debug.Log("Enemy 수 : " + LockOnTargetObjs.Length + " 현재 선택한 인덱스 값 : " + LockOnTargetIndex);
-                }
+                // 마우스 휠을 돌리면 타겟이 달라짐 
+                Sc_GameMng.ins.LockOnTargetObj = Sc_GameMng.ins.LockOnTargetObjs[Sc_GameMng.ins.LockOnTargetIndex];
+                Debug.Log("Enemy 수 : " + Sc_GameMng.ins.LockOnTargetObjs.Length + " 현재 선택한 인덱스 값 : " + Sc_GameMng.ins.LockOnTargetIndex);
             }
             
         }
@@ -481,7 +451,7 @@ namespace SG
 
             if (animatorHandler.canRatate)
             {
-                Vector3 targetDir = LockOnTargetObj.transform.position - transform.position;
+                Vector3 targetDir = Sc_GameMng.ins.LockOnTargetObj.transform.position - transform.position;
                 targetDir.Normalize();
                 float rs = roatationSpeed; // 회전속도 
                 Quaternion tr = Quaternion.LookRotation(targetDir);
@@ -491,25 +461,7 @@ namespace SG
         }
        
 
-        void EnemysTargeting()
-        {
-            //타겟팅될 오브젝트를 모두 TargetObj에 집어넣는다.
-            LockOnTargetObjs = GameObject.FindGameObjectsWithTag("Enemy");        //타겟이 가능한 오브젝트 집어넣기        
-                                                                                       //거리순으로 정렬한다.        
-            Vector3 playerPos = transform.position;
-
-            Debug.Log("현재 캐릭터의 좌표는 " + transform.position);
-            Array.Sort<GameObject>(LockOnTargetObjs, (x, y) => (playerPos - x.transform.position).sqrMagnitude.CompareTo((playerPos - y.transform.position).sqrMagnitude));
-            //TargetObjs.Sort((x,y) => (ch_pos - x.transform.position).sqrMagnitude.CompareTo((ch_pos -y.transform.position).sqrMagnitude));  //소트가 제대로 되지 않음 (거리기준으로 되야 됨)
-            for (int i = 0; i < LockOnTargetObjs.Length; i++)
-            {
-                Debug.Log(i + "번째 오브젝트(" + LockOnTargetObjs[i].name + ")의 거리 = " + (playerPos - LockOnTargetObjs[i].transform.position).sqrMagnitude);
-            }
-            //가장 가까운 오브젝트를 반환한다.
-
-            LockOnTargetObj = LockOnTargetObjs[0];
-            Debug.Log("타게팅 된 오브제 :" + LockOnTargetObj.name);
-        }
+        
 
         #endregion
 
@@ -569,8 +521,8 @@ namespace SG
                 // 락온이면  
                 //타겟의 방향으로
                 
-                moveMotionDir = LockOnTargetObj.transform.position - transform.position ;
-                Debug.Log("moveMotionDir : "+ moveMotionDir +  "1 :" + LockOnTargetObj.transform.position + " 2 : "+transform.position);
+                moveMotionDir = Sc_GameMng.ins.LockOnTargetObj.transform.position - transform.position ;
+                Debug.Log("moveMotionDir : "+ moveMotionDir +  "1 :" + Sc_GameMng.ins.LockOnTargetObj.transform.position + " 2 : "+transform.position);
                 moveMotionDir.Normalize();
             }
             else
