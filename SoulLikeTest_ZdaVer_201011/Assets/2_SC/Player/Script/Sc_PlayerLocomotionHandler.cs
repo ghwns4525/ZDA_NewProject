@@ -77,7 +77,7 @@ namespace SG
 
 
         }
-        #region # Movement
+        #region # 기본 모드 Movement
 
         public Vector3 normalVector;
         Vector3 targetPossition;
@@ -318,11 +318,15 @@ namespace SG
         }
         #endregion
 
+        #region 카메라 고정 Movement
+        #endregion
+
+
         #region == 카메라 고정 로직 == 
         /// # HandleTargeting() :: Update 
         /// 버튼을 누르면 고정모드 ture
         /// 고정모드 true 일때 
-        bool isfixedCameraStayFlag=false;
+        bool isfixedCameraStayFlag =false;
         public void LockOnTrigger(float delta)
         {
 
@@ -465,6 +469,8 @@ namespace SG
 
         #endregion
 
+
+
         #region == Root Motion Locomotion == 
 
         public void AnimatorRootMotionMoveHandler(float delta)
@@ -555,6 +561,7 @@ namespace SG
         }
         #endregion
 
+        #region  == 안쓰는 함수들 == 
         public Vector3 Get_Z_AxisPos(Transform target, float Length)
         {
             Vector3 vec = target.forward * Length;
@@ -588,6 +595,8 @@ namespace SG
 
             return projectedVelocity;
         }
+
+        #endregion
     }
 }
 
