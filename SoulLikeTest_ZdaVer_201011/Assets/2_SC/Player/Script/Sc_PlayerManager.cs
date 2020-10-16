@@ -139,14 +139,23 @@ public class Sc_PlayerManager : MonoBehaviour
         if(cameraHandler.isLockOnMode == false)
         {
             // 일반 모드
+            // 1이 일반 모드 Movement
+            anim.SetLayerWeight(1,1);
+            anim.SetLayerWeight(2,0);
 
-
+            sc_PlayerLocomotion.HandleRollingAndSprinting(delta);
             sc_PlayerLocomotion.HandleMovement(delta);
+
 
         }
         else if (cameraHandler.isLockOnMode == true)
         {
             // 타겟 모드
+            // 2이 타겟 모드 Movement
+            anim.SetLayerWeight(1, 0);
+            anim.SetLayerWeight(2, 1);
+
+            sc_PlayerLocomotion.HandleBlendTreeRolling(delta);
             sc_PlayerLocomotion.HandleLockOnMovement(delta);
             sc_PlayerLocomotion.LockOnModeHandler(delta);
         }

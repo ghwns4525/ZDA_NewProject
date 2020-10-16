@@ -431,7 +431,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageEnum: 0
+  bossObj: {fileID: 0}
   LockOnTargetObjs: []
+  lockOnTargetObj: {fileID: 0}
 --- !u!4 &102659409
 Transform:
   m_ObjectHideFlags: 0
@@ -3815,6 +3817,8 @@ MonoBehaviour:
   isLockOnMode: 0
   LockOnTarget: {fileID: 0}
   LockOnTargetPivot: {fileID: 1948086368}
+  lockOnMinPivot: -35
+  lockOnMaxPivot: 35
   lookSpeed: 0.1
   followSpeed: 0.1
   pivotSpeed: 0.03
@@ -3846,7 +3850,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1915475733}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -4129,7 +4133,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1948086368
 Transform:
   m_ObjectHideFlags: 0

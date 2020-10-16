@@ -107,7 +107,6 @@ namespace SG
 
         public void HandleMovement(float delta)
         {
-
             // 행동중 예외 처리
             if (inputHandler.rollFlag)
             {
@@ -119,7 +118,7 @@ namespace SG
                 /// 예외처리 이유
                 /// 공격이나 롤링같은 행동중에 애니메이션 파라미터 값은 계속 올라가서
                 /// 해당 코드로 강제로 파라미터를 0으로 만든다.
-                animatorHandler.UpdateAnimatorValues(0, 0 , false);
+                animatorHandler.UpdateAnimatorLocomotionValues(0, 0 , false);
                 return;
             }
            
@@ -163,7 +162,7 @@ namespace SG
 
             rigidbody.velocity = projectedVelocity;
             //Debug.Log("velocity" + rigidbody.velocity);
-            animatorHandler.UpdateAnimatorValues(inputHandler.moveAmount, 0 , playerManager.isSprinting);
+            animatorHandler.UpdateAnimatorLocomotionValues(inputHandler.moveAmount, 0 , playerManager.isSprinting);
 
             if (animatorHandler.canRatate)
             {
@@ -206,8 +205,44 @@ namespace SG
                 // 움직이는 중 
                 if (inputHandler.moveAmount > 0)
                 {
-                    animatorHandler.PlayTargetAnimation("Rolling", true , true);
-                    playerManager.SetStamina(playerManager.staminaValue_Roll); // 롤링 자체가 한번만 실행하는거라 2번 호출되는듯
+                    animatorHandler.PlayTargetAnimation("Rolling", true, true);
+                    playerManager.SetStamina(playerManager.staminaValue_Roll);
+                    moveDirection.y = 0;
+                    Quaternion rollRotation = Quaternion.LookRotation(moveDirection);
+                    myTrasform.rotation = rollRotation;
+
+                    // 이러면 뒤에 DisableCome 애니메이션 이벤트 함수가 씹히기 때문에
+                    // 이쪽에서 
+                    Sc_PlayerManager.ins.anim.SetBool("canDoCombo", false);
+                    Sc_PlayerManager.ins.isAttack = false;
+                    // 처리해준다. 
+
+                }
+                /*  Debug.Log("호출 얼마나 됨?");
+                  inputHandler.rollFlag = false;*/
+            }
+        }
+
+        public void HandleBlendTreeRolling(float delta)
+        {
+            // 예외처리 : 
+            if (Sc_PlayerManager.ins.canDoRoll == false)
+            {
+                return;
+            }
+
+            if (inputHandler.rollFlag) // 단발성
+            {
+                animatorHandler.animator.SetBool("IsRolling", true);
+
+                moveDirection = cameraObject.forward * inputHandler.vertical;
+                moveDirection += cameraObject.right * inputHandler.horizontal;
+                // 만약 멈췄을때 처리를 하고싶다면 이렇게 하면 됨 
+
+                // 움직이는 중 
+                if (inputHandler.moveAmount > 0)
+                {
+                    playerManager.SetStamina(playerManager.staminaValue_Roll);
                     moveDirection.y = 0;
                     Quaternion rollRotation = Quaternion.LookRotation(moveDirection);
                     myTrasform.rotation = rollRotation;
@@ -407,7 +442,7 @@ namespace SG
                 /// 예외처리 이유
                 /// 공격이나 롤링같은 행동중에 애니메이션 파라미터 값은 계속 올라가서
                 /// 해당 코드로 강제로 파라미터를 0으로 만든다.
-                animatorHandler.UpdateAnimatorValues(0, 0, false);
+                animatorHandler.UpdateAnimatorLocomotionValues(0, 0, false);
                 return;
             }
 
@@ -451,7 +486,7 @@ namespace SG
 
             rigidbody.velocity = projectedVelocity;
             //Debug.Log("velocity" + rigidbody.velocity);
-            animatorHandler.UpdateAnimatorValues(inputHandler.moveAmount, 0, playerManager.isSprinting);
+            animatorHandler.UpdateAnimatorLocomotionValues(inputHandler.vertical , inputHandler.horizontal, false);
 
             if (animatorHandler.canRatate)
             {
