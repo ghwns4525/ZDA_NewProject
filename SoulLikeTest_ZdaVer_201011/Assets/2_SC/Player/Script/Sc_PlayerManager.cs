@@ -59,7 +59,7 @@ public class Sc_PlayerManager : MonoBehaviour
             if(staminaMax < stamina)
             {
                 stamina = staminaMax;
-                Debug.Log("스태미나 맥스치");
+                //Debug.Log("스태미나 맥스치");
             }
             else if(stamina < 0)
             {
@@ -97,7 +97,7 @@ public class Sc_PlayerManager : MonoBehaviour
     public int staminaValue_ChargingAttack;
 
 
-    Sc_CameraHandler cameraHandler;
+    public Sc_CameraHandler cameraHandler;
     Sc_PlayerLocomotionHandler sc_PlayerLocomotion;
     Sc_AnimatorHandler sc_AnimatorHandler;
     private void Awake()
@@ -131,7 +131,7 @@ public class Sc_PlayerManager : MonoBehaviour
         canDoRoll = anim.GetBool("canDoRoll");
 
         inputHandler.TickInput(delta);
-        sc_PlayerLocomotion.HandleRollingAndSprinting(delta);
+        //sc_PlayerLocomotion.HandleRollingAndSprinting(delta);
         sc_PlayerLocomotion.HandleFalling(delta, sc_PlayerLocomotion.moveDirection);
             
         sc_PlayerLocomotion.LockOnTrigger(delta);
@@ -155,7 +155,7 @@ public class Sc_PlayerManager : MonoBehaviour
             anim.SetLayerWeight(1, 0);
             anim.SetLayerWeight(2, 1);
 
-            sc_PlayerLocomotion.HandleBlendTreeRolling(delta);
+            sc_PlayerLocomotion.HandleLockOnModeRolling(delta);
             sc_PlayerLocomotion.HandleLockOnMovement(delta);
             sc_PlayerLocomotion.LockOnModeHandler(delta);
         }

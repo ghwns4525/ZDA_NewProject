@@ -139,9 +139,11 @@ namespace SG
             animator.SetFloat(horizontal, h, 0.1f, Time.deltaTime); // dampTIme 은 또ㅓ 뭐임? 
 
             // 롤링시에 값을 유지하기 위해서 들어오지 못하게 한다. 
-            if(!animator.GetBool("IsRollinjg"))
+            if(!animator.GetBool("IsRolling"))
             {
-                UpdateAnimatorValues2(v,h);
+                float temp_v = animator.GetFloat(vertical);
+                float temp_h = animator.GetFloat(horizontal);
+                UpdateAnimatorValues2(temp_v, temp_h);
             }
         }
 

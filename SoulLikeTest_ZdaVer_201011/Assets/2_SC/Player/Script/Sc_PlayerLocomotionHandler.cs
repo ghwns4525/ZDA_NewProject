@@ -2,19 +2,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SG;
 
 /// 구르고 나서 Interacting때문에 구르고 나서 
 //움직임을 담당하는 스크립트.
 //movement라고 봐도 됨.
-namespace SG
-{
+
     public class Sc_PlayerLocomotionHandler : MonoBehaviour
     {
         public bool isRootAni;
         Sc_PlayerManager playerManager;
         Transform cameraObject;
+        Transform cameraHolderTr;
         Sc_InputHandler inputHandler;
-        Sc_GameMng sc_GameMng;
+        public Sc_GameMng sc_GameMng;
         public Vector3 moveDirection;
         public Vector3 moveDirectionNomallized;
 
@@ -65,6 +66,7 @@ namespace SG
             myTrasform = transform;
             animatorHandler.Initialized();
 
+            cameraHolderTr = FindObjectOfType<Sc_CameraHandler>().transform;
             playerManager.isGround = true;
             ignorForGroundCheck = ~(1 << 8 | 1 << 11);
             
@@ -205,7 +207,7 @@ namespace SG
                 // 움직이는 중 
                 if (inputHandler.moveAmount > 0)
                 {
-                    animatorHandler.PlayTargetAnimation("Rolling", true, true);
+                    animatorHandler.PlayTargetAnimation("Rolling_Front", true, true);
                     playerManager.SetStamina(playerManager.staminaValue_Roll);
                     moveDirection.y = 0;
                     Quaternion rollRotation = Quaternion.LookRotation(moveDirection);
@@ -223,36 +225,63 @@ namespace SG
             }
         }
 
-        public void HandleBlendTreeRolling(float delta)
+        public void HandleLockOnModeRolling(float delta)
         {
-            // 예외처리 : 
+            
+            // 공격중에 공격 애니메이션 후반  
+            // canDoCombo가 켜져있다면 아무튼 
             if (Sc_PlayerManager.ins.canDoRoll == false)
             {
+                //Debug.Log("HandleRollingAndSprinting 실행함");
                 return;
             }
 
-            if (inputHandler.rollFlag) // 단발성
+            if (inputHandler.rollFlag)
             {
-                animatorHandler.animator.SetBool("IsRolling", true);
+                moveDirection = cameraHolderTr.forward * inputHandler.vertical;
+                moveDirection += cameraHolderTr.right * inputHandler.horizontal;
+                moveDirection.Normalize();
 
-                moveDirection = cameraObject.forward * inputHandler.vertical;
-                moveDirection += cameraObject.right * inputHandler.horizontal;
-                // 만약 멈췄을때 처리를 하고싶다면 이렇게 하면 됨 
-
-                // 움직이는 중 
-                if (inputHandler.moveAmount > 0)
+                /*   
+                 *   // 어디든 일단 움직이고 있음 
+                if (inputHandler.moveAmount >= 0)
                 {
-                    playerManager.SetStamina(playerManager.staminaValue_Roll);
+                    animatorHandler.PlayTargetAnimation("Rolling", true);
                     moveDirection.y = 0;
                     Quaternion rollRotation = Quaternion.LookRotation(moveDirection);
                     myTrasform.rotation = rollRotation;
+                }
+                */
+
+            // 만약 멈췄을때 처리를 하고싶다면 이렇게 하면 됨 
+            // 움직이는 중 
+            if (inputHandler.moveAmount > 0)
+                {
+                    // z축이 + 이면
+                    if(0 <= inputHandler.vertical)
+                    {
+                        animatorHandler.PlayTargetAnimation("Rolling_Front", true, true);
+                        Debug.DrawRay(transform.position, moveDirection * 5f, Color.blue, 1f);
+                        Quaternion rollRotation = Quaternion.LookRotation(moveDirection); // 도는건 좋은데 로직을 바꿔야 할듯
+                        myTrasform.rotation = rollRotation;
+                    }
+                    else if(inputHandler.vertical < 0 )
+                    {
+                        animatorHandler.PlayTargetAnimation("Rolling_Back", true, true);
+                        Vector3 vecZReverseTemp = moveDirection;
+                        vecZReverseTemp *= -1; // 예외처리 : 뒤 방향으로 뒤로 가는 애니메이션을 하니 앞으로 감 그래서 백덤블링인데 앞으로 가는 기현상 방지. 그래서 방향을 모두 뒤집어 줌.
+                        Debug.Log("vecZReverseTemp" + vecZReverseTemp);
+                        Quaternion rollRotation = Quaternion.LookRotation(vecZReverseTemp); 
+                        myTrasform.rotation = rollRotation;
+                    }
+                    playerManager.SetStamina(playerManager.staminaValue_Roll);
+                    moveDirection.y = 0;
 
                     // 이러면 뒤에 DisableCome 애니메이션 이벤트 함수가 씹히기 때문에
                     // 이쪽에서 
                     Sc_PlayerManager.ins.anim.SetBool("canDoCombo", false);
                     Sc_PlayerManager.ins.isAttack = false;
                     // 처리해준다. 
-
                 }
                 /*  Debug.Log("호출 얼마나 됨?");
                   inputHandler.rollFlag = false;*/
@@ -449,8 +478,8 @@ namespace SG
             //animatorHandler.animator.applyRootMotion = false;
 
             // 캐릭터를 기준으로 이동한다.
-            moveDirection = transform.forward * inputHandler.vertical;
-            moveDirection += transform.right * inputHandler.horizontal;
+            moveDirection = cameraHolderTr.forward * inputHandler.vertical;
+            moveDirection += cameraHolderTr.right * inputHandler.horizontal;
             moveDirection.Normalize();
 
             // 근데 이제 피벗때문에 카메라의 위치가 애매해짐. 
@@ -633,5 +662,5 @@ namespace SG
 
         #endregion
     }
-}
+
 
