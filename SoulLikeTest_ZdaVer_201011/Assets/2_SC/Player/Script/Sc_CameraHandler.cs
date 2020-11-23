@@ -19,10 +19,6 @@ namespace SG
         [SerializeField]
         private Transform LockOnTargetPivot;
 
-        private float lockOnPivotAngle = -35;
-        public float lockOnMinPivot = -35;
-        public float lockOnMaxPivot = 35;
-
         [Header("  ")]
 
         private Transform myTransform;
@@ -121,10 +117,10 @@ namespace SG
             
 
             // 예외처리 : LockOnTargetObj의 예외 처리 
-            if (Sc_GameMng.ins.LockOnTargetObj != null)
+            if (sc_PlayerLocomotionHandler.LockOnTargetObj != null)
             {
                 // LockOnTargetObj 대입
-                LockOnTarget = Sc_GameMng.ins.LockOnTargetObj.transform;
+                LockOnTarget = sc_PlayerLocomotionHandler.LockOnTargetObj.transform;
                 // 락온 피벗은 타겟을 따라다니게 함 
                 Vector3 lockOnTargetPivotPosition = Vector3.SmoothDamp(LockOnTargetPivot.position, LockOnTarget.position, ref cameraFollowVelocity, delta / 0.5f);
                 LockOnTargetPivot.position = lockOnTargetPivotPosition;
@@ -135,24 +131,6 @@ namespace SG
                 // 카메라는 카메라 피벗을 본다. 
                 cameraTransform.LookAt(cameraPivotTransform);
 
-                // 예외처리 : 카메라 너무 낮거나 높은 위치에서 고정이 됨.
-                // 따라서 Clamp로 각도를 정해준다. 
-
-                //@20201012 개발중
-                /*
-                lockOnPivotAngle = Mathf.Clamp(pivotAngle, lockOnMinPivot, lockOnMaxPivot);
-
-                Vector3 rotation = Vector3.zero;
-                rotation.y = lookAngle;
-                Quaternion targetRotation = Quaternion.Euler(rotation);
-                myTransform.rotation = targetRotation;
-
-                rotation = Vector3.zero;
-                rotation.x = pivotAngle;
-
-                targetRotation = Quaternion.Euler(rotation);
-                cameraPivotTransform.localRotation = targetRotation;*/
-
             }
             else
             {
@@ -162,6 +140,10 @@ namespace SG
             // 핸들러 개체가 플레이어를 따라 갈 수 있게 한다. 
             Vector3 targetPosition = Vector3.SmoothDamp(myTransform.position, targetTransform.position, ref cameraFollowVelocity, delta / 0.5f);
             myTransform.position = targetPosition;
+
+
+
+
 
             HandleCameraCollisions(delta);
         }

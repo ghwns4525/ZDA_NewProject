@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Rendering;
 using UnityEngine;
@@ -73,12 +72,8 @@ namespace SG
             CurrentAni = aniName_OverrideIdie;
             CurrentAniTemp = aniName_OverrideIdie;
         }
-        private void Update()
-        {
-            //animator.SetFloat(vertical, Mathf.Clamp(animator.GetFloat(vertical), -1, 1));
-            //animator.SetFloat(horizontal, Mathf.Clamp(animator.GetFloat(horizontal), -1, 1)); // dampTIme 은 또ㅓ 뭐임? 
-        }
-        public void UpdateAnimatorLocomotionValues (float verticalMovement , float horizontalMovement, bool isSprinting)
+
+        public void UpdateAnimatorValues (float verticalMovement , float horizontalMovement, bool isSprinting)
         {
             #region Vertical
 
@@ -87,7 +82,7 @@ namespace SG
             {
                 v = 0.5f;
             }
-            else if(verticalMovement >= 0.55f)
+            else if(verticalMovement > 0.55f)
             {
                 v = 1; 
             }
@@ -95,7 +90,7 @@ namespace SG
             {
                 v = -0.5f;
             }
-            else if(verticalMovement <= -0.55f)
+            else if(verticalMovement < -0.55f)
             {
                 v = -1;
             }
@@ -111,7 +106,7 @@ namespace SG
             {
                 h = 0.5f;
             }
-            else if (horizontalMovement >= 0.55f)
+            else if (horizontalMovement > 0.55f)
             {
                 h = 1;
             }
@@ -119,7 +114,7 @@ namespace SG
             {
                 h = -0.5f;
             }
-            else if (horizontalMovement <= -0.55f)
+            else if (horizontalMovement < -0.55f)
             {
                 h = -1;
             }
@@ -133,24 +128,9 @@ namespace SG
                 v = 2;
                 h = horizontalMovement;
             }
-            
-
             animator.SetFloat(vertical , v , 0.1f , Time.deltaTime);
             animator.SetFloat(horizontal, h, 0.1f, Time.deltaTime); // dampTIme 은 또ㅓ 뭐임? 
 
-            // 롤링시에 값을 유지하기 위해서 들어오지 못하게 한다. 
-            if(!animator.GetBool("IsRolling"))
-            {
-                float temp_v = animator.GetFloat(vertical);
-                float temp_h = animator.GetFloat(horizontal);
-                UpdateAnimatorValues2(temp_v, temp_h);
-            }
-        }
-
-        public void UpdateAnimatorValues2(float verticalMovement, float horizontalMovement)
-        {
-            animator.SetFloat(Animator.StringToHash("DodgeVert"), verticalMovement, 0.1f, Time.deltaTime);
-            animator.SetFloat(Animator.StringToHash("DodgeHori"), horizontalMovement, 0.1f, Time.deltaTime);
         }
 
         public void AnimatiorMoveValuesReset()
@@ -177,7 +157,7 @@ namespace SG
             animator.applyRootMotion = isRootMotion; // 이걸로 루트모션을 쓸껀지 정한다. 
             animator.SetBool("isInteracting", isInteracting);
             animator.SetBool("isAniPlay", true);
-            animator.CrossFade(targetAnim, 0.07f); // Defalt 0.12
+            animator.CrossFade(targetAnim, 0.12f);
             Debug.Log("############isInteracting : " + animator.GetBool("isInteracting"));
         }
 

@@ -308,12 +308,12 @@ namespace SG
                 // 마우스휠로 값 올려주는 작업
                 if (input_mouseWheelUpDown < 0)
                 {
-                    Sc_GameMng.ins.LockOnTargetIndex -= 1;
+                    playerLocomotionHandler.LockOnTargetIndex -= 1;
                     mouseWheelUpDownFlag = true;
                 }
                 else if (input_mouseWheelUpDown > 0)
                 {
-                    Sc_GameMng.ins.LockOnTargetIndex += 1;
+                    playerLocomotionHandler.LockOnTargetIndex += 1;
                     mouseWheelUpDownFlag = true;
                 }
             }

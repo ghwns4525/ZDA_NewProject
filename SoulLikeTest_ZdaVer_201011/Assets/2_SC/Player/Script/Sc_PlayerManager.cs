@@ -40,8 +40,6 @@ public class Sc_PlayerManager : MonoBehaviour
     public bool isAttackMove; // 공격하면 일정 시간만큼 움직여야 하는데 그것에 대한 값
     public bool attackFlag;
 
-    public bool isBossStage;
-
     [Header("Stamina Status")]
         
 
@@ -59,7 +57,7 @@ public class Sc_PlayerManager : MonoBehaviour
             if(staminaMax < stamina)
             {
                 stamina = staminaMax;
-                //Debug.Log("스태미나 맥스치");
+                Debug.Log("스태미나 맥스치");
             }
             else if(stamina < 0)
             {
@@ -97,7 +95,7 @@ public class Sc_PlayerManager : MonoBehaviour
     public int staminaValue_ChargingAttack;
 
 
-    public Sc_CameraHandler cameraHandler;
+    Sc_CameraHandler cameraHandler;
     Sc_PlayerLocomotionHandler sc_PlayerLocomotion;
     Sc_AnimatorHandler sc_AnimatorHandler;
     private void Awake()
@@ -131,7 +129,7 @@ public class Sc_PlayerManager : MonoBehaviour
         canDoRoll = anim.GetBool("canDoRoll");
 
         inputHandler.TickInput(delta);
-        //sc_PlayerLocomotion.HandleRollingAndSprinting(delta);
+        sc_PlayerLocomotion.HandleRollingAndSprinting(delta);
         sc_PlayerLocomotion.HandleFalling(delta, sc_PlayerLocomotion.moveDirection);
             
         sc_PlayerLocomotion.LockOnTrigger(delta);
@@ -139,23 +137,14 @@ public class Sc_PlayerManager : MonoBehaviour
         if(cameraHandler.isLockOnMode == false)
         {
             // 일반 모드
-            // 1이 일반 모드 Movement
-            anim.SetLayerWeight(1,1);
-            anim.SetLayerWeight(2,0);
 
-            sc_PlayerLocomotion.HandleRollingAndSprinting(delta);
+
             sc_PlayerLocomotion.HandleMovement(delta);
-
 
         }
         else if (cameraHandler.isLockOnMode == true)
         {
             // 타겟 모드
-            // 2이 타겟 모드 Movement
-            anim.SetLayerWeight(1, 0);
-            anim.SetLayerWeight(2, 1);
-
-            sc_PlayerLocomotion.HandleLockOnModeRolling(delta);
             sc_PlayerLocomotion.HandleLockOnMovement(delta);
             sc_PlayerLocomotion.LockOnModeHandler(delta);
         }

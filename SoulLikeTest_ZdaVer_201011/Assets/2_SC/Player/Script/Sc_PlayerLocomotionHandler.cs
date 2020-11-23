@@ -2,20 +2,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using SG;
 
 /// 구르고 나서 Interacting때문에 구르고 나서 
 //움직임을 담당하는 스크립트.
 //movement라고 봐도 됨.
-
+namespace SG
+{
     public class Sc_PlayerLocomotionHandler : MonoBehaviour
     {
         public bool isRootAni;
         Sc_PlayerManager playerManager;
         Transform cameraObject;
-        Transform cameraHolderTr;
         Sc_InputHandler inputHandler;
-        public Sc_GameMng sc_GameMng;
         public Vector3 moveDirection;
         public Vector3 moveDirectionNomallized;
 
@@ -48,11 +46,44 @@ using SG;
         float fallingSpeed = 45;
 
         [Header("LockOn Mode")]
-        //public GameObject LockOnTargetObj;
+        public GameObject[] LockOnTargetObjs;
+        public GameObject LockOnTargetObj;
         [SerializeField]
         private float LockOnCameraRoatationSpeed = 10;
 
-        
+        int lockOnTargetIndex = 0;
+        public int LockOnTargetIndex
+        {
+          
+            get
+            {
+                return lockOnTargetIndex;
+            }
+            set
+            {
+                // 8개 있으면 0~7
+
+                Debug.Log("TargetsIndex : " + lockOnTargetIndex);
+                // 7개 보다 크면 0으로
+
+                // LockOnTargetObjs 예외 처리
+
+                if (LockOnTargetObjs != null)
+                {
+                    if (LockOnTargetObjs.Length - 1 < lockOnTargetIndex)
+                    {
+                        lockOnTargetIndex = 0;
+                    }
+                    // 0보다 작으면 ( 음수가 되면 ) 최대값으로 
+                    else if (lockOnTargetIndex < 0)
+                    {
+                        lockOnTargetIndex = LockOnTargetObjs.Length - 1;
+                    }
+                }
+
+                
+            }
+        }
 
         void Start()
         {
@@ -60,16 +91,12 @@ using SG;
             rigidbody = GetComponent<Rigidbody>();
             inputHandler = GetComponent<Sc_InputHandler>();
             animatorHandler = GetComponentInChildren<Sc_AnimatorHandler>();
-            sc_GameMng = Sc_GameMng.ins;
-
             cameraObject = Camera.main.transform;
             myTrasform = transform;
             animatorHandler.Initialized();
 
-            cameraHolderTr = FindObjectOfType<Sc_CameraHandler>().transform;
             playerManager.isGround = true;
             ignorForGroundCheck = ~(1 << 8 | 1 << 11);
-            
         }
 
         void Update()
@@ -79,7 +106,7 @@ using SG;
 
 
         }
-        #region # 기본 모드 Movement
+        #region # Movement
 
         public Vector3 normalVector;
         Vector3 targetPossition;
@@ -109,6 +136,7 @@ using SG;
 
         public void HandleMovement(float delta)
         {
+
             // 행동중 예외 처리
             if (inputHandler.rollFlag)
             {
@@ -120,7 +148,7 @@ using SG;
                 /// 예외처리 이유
                 /// 공격이나 롤링같은 행동중에 애니메이션 파라미터 값은 계속 올라가서
                 /// 해당 코드로 강제로 파라미터를 0으로 만든다.
-                animatorHandler.UpdateAnimatorLocomotionValues(0, 0 , false);
+                animatorHandler.UpdateAnimatorValues(0, 0 , false);
                 return;
             }
            
@@ -164,7 +192,7 @@ using SG;
 
             rigidbody.velocity = projectedVelocity;
             //Debug.Log("velocity" + rigidbody.velocity);
-            animatorHandler.UpdateAnimatorLocomotionValues(inputHandler.moveAmount, 0 , playerManager.isSprinting);
+            animatorHandler.UpdateAnimatorValues(inputHandler.moveAmount, 0 , playerManager.isSprinting);
 
             if (animatorHandler.canRatate)
             {
@@ -207,8 +235,8 @@ using SG;
                 // 움직이는 중 
                 if (inputHandler.moveAmount > 0)
                 {
-                    animatorHandler.PlayTargetAnimation("Rolling_Front", true, true);
-                    playerManager.SetStamina(playerManager.staminaValue_Roll);
+                    animatorHandler.PlayTargetAnimation("Rolling", true , true);
+                    playerManager.SetStamina(playerManager.staminaValue_Roll); // 롤링 자체가 한번만 실행하는거라 2번 호출되는듯
                     moveDirection.y = 0;
                     Quaternion rollRotation = Quaternion.LookRotation(moveDirection);
                     myTrasform.rotation = rollRotation;
@@ -219,69 +247,6 @@ using SG;
                     Sc_PlayerManager.ins.isAttack = false;
                     // 처리해준다. 
 
-                }
-                /*  Debug.Log("호출 얼마나 됨?");
-                  inputHandler.rollFlag = false;*/
-            }
-        }
-
-        public void HandleLockOnModeRolling(float delta)
-        {
-            
-            // 공격중에 공격 애니메이션 후반  
-            // canDoCombo가 켜져있다면 아무튼 
-            if (Sc_PlayerManager.ins.canDoRoll == false)
-            {
-                //Debug.Log("HandleRollingAndSprinting 실행함");
-                return;
-            }
-
-            if (inputHandler.rollFlag)
-            {
-                moveDirection = cameraHolderTr.forward * inputHandler.vertical;
-                moveDirection += cameraHolderTr.right * inputHandler.horizontal;
-                moveDirection.Normalize();
-
-                /*   
-                 *   // 어디든 일단 움직이고 있음 
-                if (inputHandler.moveAmount >= 0)
-                {
-                    animatorHandler.PlayTargetAnimation("Rolling", true);
-                    moveDirection.y = 0;
-                    Quaternion rollRotation = Quaternion.LookRotation(moveDirection);
-                    myTrasform.rotation = rollRotation;
-                }
-                */
-
-            // 만약 멈췄을때 처리를 하고싶다면 이렇게 하면 됨 
-            // 움직이는 중 
-            if (inputHandler.moveAmount > 0)
-                {
-                    // z축이 + 이면
-                    if(0 <= inputHandler.vertical)
-                    {
-                        animatorHandler.PlayTargetAnimation("Rolling_Front", true, true);
-                        Debug.DrawRay(transform.position, moveDirection * 5f, Color.blue, 1f);
-                        Quaternion rollRotation = Quaternion.LookRotation(moveDirection); // 도는건 좋은데 로직을 바꿔야 할듯
-                        myTrasform.rotation = rollRotation;
-                    }
-                    else if(inputHandler.vertical < 0 )
-                    {
-                        animatorHandler.PlayTargetAnimation("Rolling_Back", true, true);
-                        Vector3 vecZReverseTemp = moveDirection;
-                        vecZReverseTemp *= -1; // 예외처리 : 뒤 방향으로 뒤로 가는 애니메이션을 하니 앞으로 감 그래서 백덤블링인데 앞으로 가는 기현상 방지. 그래서 방향을 모두 뒤집어 줌.
-                        Debug.Log("vecZReverseTemp" + vecZReverseTemp);
-                        Quaternion rollRotation = Quaternion.LookRotation(vecZReverseTemp); 
-                        myTrasform.rotation = rollRotation;
-                    }
-                    playerManager.SetStamina(playerManager.staminaValue_Roll);
-                    moveDirection.y = 0;
-
-                    // 이러면 뒤에 DisableCome 애니메이션 이벤트 함수가 씹히기 때문에
-                    // 이쪽에서 
-                    Sc_PlayerManager.ins.anim.SetBool("canDoCombo", false);
-                    Sc_PlayerManager.ins.isAttack = false;
-                    // 처리해준다. 
                 }
                 /*  Debug.Log("호출 얼마나 됨?");
                   inputHandler.rollFlag = false;*/
@@ -382,15 +347,11 @@ using SG;
         }
         #endregion
 
-        #region 카메라 고정 Movement
-        #endregion
-
-
         #region == 카메라 고정 로직 == 
         /// # HandleTargeting() :: Update 
         /// 버튼을 누르면 고정모드 ture
         /// 고정모드 true 일때 
-        bool isfixedCameraStayFlag =false;
+        bool isfixedCameraStayFlag=false;
         public void LockOnTrigger(float delta)
         {
 
@@ -401,7 +362,7 @@ using SG;
                 {
                     // 고정모드 True가 됨
                     Sc_CameraHandler.singleton.isLockOnMode = true;
-                    VelocityReset(); 
+                    VelocityReset();
                 }
                 
                 else if (Sc_CameraHandler.singleton.isLockOnMode == true)
@@ -422,38 +383,39 @@ using SG;
                 // 타겟 모드중이면
                 if (Sc_CameraHandler.singleton.isLockOnMode == true)
                 {
-                    Debug.Log("@@@@@@@@@@@@@ "+ sc_GameMng.stageEnum);
+                    // 보스 Null 이면 보스 없다는것
+                    if (GameObject.FindGameObjectWithTag("Boss") == null)
+                    {
+                        // 일반 몬스터중 제일 가까운 녀석들을 리스트에 담아서 소트함.
+                        EnemysTargeting();
+                    }
 
-                    if (sc_GameMng.stageEnum == Sc_GameMng.StageEnum.BossStage)
-                    {
-                        sc_GameMng.LockOnTargetObj = sc_GameMng.BossObj;
-                    }
-                    else if (sc_GameMng.stageEnum == Sc_GameMng.StageEnum.NomalStage)
-                    {
-                        sc_GameMng.LockOnTargetObj = sc_GameMng.NearEnemyTargetting();
-                    }
                     else
                     {
-                        Debug.LogWarning("타겟 할 게 없어요!!");
-                        sc_GameMng.LockOnTargetObj = null;
+                        // 보스 락온 타겟오브젝트로 한다.
+                        LockOnTargetObj = GameObject.FindGameObjectWithTag("Boss");
                     }
 
-                    Debug.Log(Sc_GameMng.ins.LockOnTargetObj.name);
+                    Debug.Log(LockOnTargetObj.name);
                 }
-                // Flag : 락온 해제
                 else if (Sc_CameraHandler.singleton.isLockOnMode == false)
                 {
-                    Sc_GameMng.ins.NearEnemyTargeReset();
-                    Sc_GameMng.ins.LockOnTargetObj = null;
+                    LockOnTargetIndex = 0;
+                    LockOnTargetObj = null;
+                    LockOnTargetObjs = null;
                 }
             }
 
             // Flag : 마우스 휠을 업다운 했을때 True가 됨.
             if(inputHandler.mouseWheelUpDownFlag)
             {
-                // 마우스 휠을 돌리면 타겟이 달라짐 
-                Sc_GameMng.ins.LockOnTargetObj = Sc_GameMng.ins.LockOnTargetObjs[Sc_GameMng.ins.LockOnTargetIndex];
-                Debug.Log("Enemy 수 : " + Sc_GameMng.ins.LockOnTargetObjs.Length + " 현재 선택한 인덱스 값 : " + Sc_GameMng.ins.LockOnTargetIndex);
+                // 예외처리 : 보스를 타겟 했을때는  LockOnTargetObjs는 NUll 이다 이것을 예외처리 해줌.
+                if (LockOnTargetObjs != null)
+                {
+                    // 마우스 휠을 돌리면 타겟이 달라짐 
+                    LockOnTargetObj = LockOnTargetObjs[LockOnTargetIndex];
+                    Debug.Log("Enemy 수 : " + LockOnTargetObjs.Length + " 현재 선택한 인덱스 값 : " + LockOnTargetIndex);
+                }
             }
             
         }
@@ -471,15 +433,15 @@ using SG;
                 /// 예외처리 이유
                 /// 공격이나 롤링같은 행동중에 애니메이션 파라미터 값은 계속 올라가서
                 /// 해당 코드로 강제로 파라미터를 0으로 만든다.
-                animatorHandler.UpdateAnimatorLocomotionValues(0, 0, false);
+                animatorHandler.UpdateAnimatorValues(0, 0, false);
                 return;
             }
 
             //animatorHandler.animator.applyRootMotion = false;
 
             // 캐릭터를 기준으로 이동한다.
-            moveDirection = cameraHolderTr.forward * inputHandler.vertical;
-            moveDirection += cameraHolderTr.right * inputHandler.horizontal;
+            moveDirection = transform.forward * inputHandler.vertical;
+            moveDirection += transform.right * inputHandler.horizontal;
             moveDirection.Normalize();
 
             // 근데 이제 피벗때문에 카메라의 위치가 애매해짐. 
@@ -515,11 +477,11 @@ using SG;
 
             rigidbody.velocity = projectedVelocity;
             //Debug.Log("velocity" + rigidbody.velocity);
-            animatorHandler.UpdateAnimatorLocomotionValues(inputHandler.vertical , inputHandler.horizontal, false);
+            animatorHandler.UpdateAnimatorValues(inputHandler.moveAmount, 0, playerManager.isSprinting);
 
             if (animatorHandler.canRatate)
             {
-                Vector3 targetDir = Sc_GameMng.ins.LockOnTargetObj.transform.position - transform.position;
+                Vector3 targetDir = LockOnTargetObj.transform.position - transform.position;
                 targetDir.Normalize();
                 float rs = roatationSpeed; // 회전속도 
                 Quaternion tr = Quaternion.LookRotation(targetDir);
@@ -529,11 +491,27 @@ using SG;
         }
        
 
-        
+        void EnemysTargeting()
+        {
+            //타겟팅될 오브젝트를 모두 TargetObj에 집어넣는다.
+            LockOnTargetObjs = GameObject.FindGameObjectsWithTag("Enemy");        //타겟이 가능한 오브젝트 집어넣기        
+                                                                                       //거리순으로 정렬한다.        
+            Vector3 playerPos = transform.position;
+
+            Debug.Log("현재 캐릭터의 좌표는 " + transform.position);
+            Array.Sort<GameObject>(LockOnTargetObjs, (x, y) => (playerPos - x.transform.position).sqrMagnitude.CompareTo((playerPos - y.transform.position).sqrMagnitude));
+            //TargetObjs.Sort((x,y) => (ch_pos - x.transform.position).sqrMagnitude.CompareTo((ch_pos -y.transform.position).sqrMagnitude));  //소트가 제대로 되지 않음 (거리기준으로 되야 됨)
+            for (int i = 0; i < LockOnTargetObjs.Length; i++)
+            {
+                Debug.Log(i + "번째 오브젝트(" + LockOnTargetObjs[i].name + ")의 거리 = " + (playerPos - LockOnTargetObjs[i].transform.position).sqrMagnitude);
+            }
+            //가장 가까운 오브젝트를 반환한다.
+
+            LockOnTargetObj = LockOnTargetObjs[0];
+            Debug.Log("타게팅 된 오브제 :" + LockOnTargetObj.name);
+        }
 
         #endregion
-
-
 
         #region == Root Motion Locomotion == 
 
@@ -591,8 +569,8 @@ using SG;
                 // 락온이면  
                 //타겟의 방향으로
                 
-                moveMotionDir = Sc_GameMng.ins.LockOnTargetObj.transform.position - transform.position ;
-                Debug.Log("moveMotionDir : "+ moveMotionDir +  "1 :" + Sc_GameMng.ins.LockOnTargetObj.transform.position + " 2 : "+transform.position);
+                moveMotionDir = LockOnTargetObj.transform.position - transform.position ;
+                Debug.Log("moveMotionDir : "+ moveMotionDir +  "1 :" + LockOnTargetObj.transform.position + " 2 : "+transform.position);
                 moveMotionDir.Normalize();
             }
             else
@@ -625,7 +603,6 @@ using SG;
         }
         #endregion
 
-        #region  == 안쓰는 함수들 == 
         public Vector3 Get_Z_AxisPos(Transform target, float Length)
         {
             Vector3 vec = target.forward * Length;
@@ -659,8 +636,6 @@ using SG;
 
             return projectedVelocity;
         }
-
-        #endregion
     }
-
+}
 

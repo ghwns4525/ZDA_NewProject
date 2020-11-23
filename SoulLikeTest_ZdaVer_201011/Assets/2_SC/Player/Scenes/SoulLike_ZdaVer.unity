@@ -401,53 +401,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 96317150}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &102659407
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 102659409}
-  - component: {fileID: 102659408}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &102659408
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 102659407}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76c363dc906151b4aa486274245b202a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stageEnum: 0
-  bossObj: {fileID: 0}
-  LockOnTargetObjs: []
-  lockOnTargetObj: {fileID: 0}
---- !u!4 &102659409
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 102659407}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.649753, y: 3.5796711, z: -2.3834443}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 9
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &119523096
 GameObject:
   m_ObjectHideFlags: 0
@@ -1164,6 +1117,8 @@ MonoBehaviour:
   sprintSpeed: 7
   roatationSpeed: 10
   fallingSpeed: 45
+  LockOnTargetObjs: []
+  LockOnTargetObj: {fileID: 0}
   LockOnCameraRoatationSpeed: 10
   normalVector: {x: 0, y: 0, z: 0}
 --- !u!114 &503636581
@@ -1226,7 +1181,6 @@ MonoBehaviour:
   isAttack: 0
   isAttackMove: 0
   attackFlag: 0
-  isBossStage: 0
   stamina: 0
   staminaMax: 100
   staminaValue_CoolDownSpeed: 0.15
@@ -2510,6 +2464,98 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b0705dccc63f774493089e93462cb59, type: 3}
+--- !u!1 &1088036420
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1088036422}
+  - component: {fileID: 1088036421}
+  m_Layer: 0
+  m_Name: Directional Light
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!108 &1088036421
+Light:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1088036420}
+  m_Enabled: 1
+  serializedVersion: 10
+  m_Type: 1
+  m_Shape: 0
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 1
+  m_Range: 10
+  m_SpotAngle: 30
+  m_InnerSpotAngle: 21.80208
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+    m_CullingMatrixOverride:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    m_UseCullingMatrixOverride: 0
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingLayerMask: 1
+  m_Lightmapping: 4
+  m_LightShadowCasterMode: 0
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_UseBoundingSphereOverride: 0
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+--- !u!4 &1088036422
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1088036420}
+  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
+  m_LocalPosition: {x: 0.02150631, y: 2.1259112, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &1100105874
 GameObject:
   m_ObjectHideFlags: 0
@@ -3107,7 +3153,6 @@ MonoBehaviour:
   isAttack: 0
   isAttackMove: 0
   attackFlag: 0
-  isBossStage: 0
   stamina: 0
   staminaMax: 100
   staminaValue_CoolDownSpeed: 0.15
@@ -3147,6 +3192,8 @@ MonoBehaviour:
   sprintSpeed: 7
   roatationSpeed: 10
   fallingSpeed: 45
+  LockOnTargetObjs: []
+  LockOnTargetObj: {fileID: 0}
   LockOnCameraRoatationSpeed: 10
   normalVector: {x: 0, y: 0, z: 0}
 --- !u!114 &1628019698
@@ -3817,8 +3864,6 @@ MonoBehaviour:
   isLockOnMode: 0
   LockOnTarget: {fileID: 0}
   LockOnTargetPivot: {fileID: 1948086368}
-  lockOnMinPivot: -35
-  lockOnMaxPivot: 35
   lookSpeed: 0.1
   followSpeed: 0.1
   pivotSpeed: 0.03
@@ -3850,7 +3895,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1915475733}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -4133,7 +4178,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1948086368
 Transform:
   m_ObjectHideFlags: 0
@@ -4638,7 +4683,7 @@ PrefabInstance:
     - target: {fileID: 4024373235219793580, guid: 9d003497a6a45b1478df2bfeebb474f9,
         type: 3}
       propertyPath: sc_AttackDataList.Array.size
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4024373235219793580, guid: 9d003497a6a45b1478df2bfeebb474f9,
         type: 3}
@@ -4650,37 +4695,49 @@ PrefabInstance:
         type: 3}
       propertyPath: sc_AttackDataList.Array.data[1]
       value: 
-      objectReference: {fileID: 11400000, guid: f8dffe1f69afad0429f92f995231184a,
+      objectReference: {fileID: 11400000, guid: cb1e9077e5837ed4189a699de5cfedc2,
         type: 2}
     - target: {fileID: 4024373235219793580, guid: 9d003497a6a45b1478df2bfeebb474f9,
         type: 3}
       propertyPath: sc_AttackDataList.Array.data[2]
       value: 
-      objectReference: {fileID: 11400000, guid: cb1e9077e5837ed4189a699de5cfedc2,
+      objectReference: {fileID: 11400000, guid: 2a3de70661738f249a98f2c553f4a34a,
         type: 2}
     - target: {fileID: 4024373235219793580, guid: 9d003497a6a45b1478df2bfeebb474f9,
         type: 3}
       propertyPath: sc_AttackDataList.Array.data[3]
       value: 
-      objectReference: {fileID: 11400000, guid: 2a3de70661738f249a98f2c553f4a34a,
+      objectReference: {fileID: 11400000, guid: 877a9df9af0c6ed42814060063497ef6,
         type: 2}
     - target: {fileID: 4024373235219793580, guid: 9d003497a6a45b1478df2bfeebb474f9,
         type: 3}
       propertyPath: sc_AttackDataList.Array.data[4]
       value: 
-      objectReference: {fileID: 11400000, guid: 877a9df9af0c6ed42814060063497ef6,
+      objectReference: {fileID: 11400000, guid: 44f397c1bb64c934aad01d1fde78237f,
         type: 2}
     - target: {fileID: 4024373235219793580, guid: 9d003497a6a45b1478df2bfeebb474f9,
         type: 3}
       propertyPath: sc_AttackDataList.Array.data[5]
       value: 
-      objectReference: {fileID: 11400000, guid: 44f397c1bb64c934aad01d1fde78237f,
+      objectReference: {fileID: 11400000, guid: fdc00d5130481084d9e0917122bfebc9,
         type: 2}
     - target: {fileID: 4024373235219793580, guid: 9d003497a6a45b1478df2bfeebb474f9,
         type: 3}
       propertyPath: attackDis
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 4024373235219793580, guid: 9d003497a6a45b1478df2bfeebb474f9,
+        type: 3}
+      propertyPath: sc_AttackDataList.Array.data[6]
+      value: 
+      objectReference: {fileID: 11400000, guid: e56add956d46e9343ae1fb1a0dbcf480,
+        type: 2}
+    - target: {fileID: 4024373235219793580, guid: 9d003497a6a45b1478df2bfeebb474f9,
+        type: 3}
+      propertyPath: sc_AttackDataList.Array.data[7]
+      value: 
+      objectReference: {fileID: 11400000, guid: e56add956d46e9343ae1fb1a0dbcf480,
+        type: 2}
     - target: {fileID: 6690359191272121153, guid: 9d003497a6a45b1478df2bfeebb474f9,
         type: 3}
       propertyPath: m_Name
