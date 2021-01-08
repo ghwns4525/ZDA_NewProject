@@ -2982,33 +2982,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1399249565}
   m_CullTransparentMesh: 0
---- !u!1 &1470732695 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6690359191272121153, guid: 9d003497a6a45b1478df2bfeebb474f9,
-    type: 3}
-  m_PrefabInstance: {fileID: 4024373235885990581}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1470732705
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1470732695}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e0ae44a056b66d489aeb146723779af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bossStateChecker: 0
-  sc_BossAnimationHandler: {fileID: 0}
-  sc_BossAttackHandler: {fileID: 0}
-  sc_BossMoveAiHandler: {fileID: 0}
-  sc_BossLocomotionHandler: {fileID: 0}
-  sc_BossStats: {fileID: 0}
-  rigidbody: {fileID: 0}
-  animator: {fileID: 0}
-  flagTest: 0
 --- !u!1 &1563326153
 GameObject:
   m_ObjectHideFlags: 0
@@ -4665,11 +4638,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2229176893848234727, guid: 9d003497a6a45b1478df2bfeebb474f9,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4024373235219793556, guid: 9d003497a6a45b1478df2bfeebb474f9,
         type: 3}
       propertyPath: healthBar
@@ -4680,78 +4648,10 @@ PrefabInstance:
       propertyPath: stunGaugeBar
       value: 
       objectReference: {fileID: 1761507770}
-    - target: {fileID: 4024373235219793580, guid: 9d003497a6a45b1478df2bfeebb474f9,
-        type: 3}
-      propertyPath: sc_AttackDataList.Array.size
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 4024373235219793580, guid: 9d003497a6a45b1478df2bfeebb474f9,
-        type: 3}
-      propertyPath: sc_AttackDataList.Array.data[0]
-      value: 
-      objectReference: {fileID: 11400000, guid: 7b33b28fc867c6d4db762b56b89c3063,
-        type: 2}
-    - target: {fileID: 4024373235219793580, guid: 9d003497a6a45b1478df2bfeebb474f9,
-        type: 3}
-      propertyPath: sc_AttackDataList.Array.data[1]
-      value: 
-      objectReference: {fileID: 11400000, guid: cb1e9077e5837ed4189a699de5cfedc2,
-        type: 2}
-    - target: {fileID: 4024373235219793580, guid: 9d003497a6a45b1478df2bfeebb474f9,
-        type: 3}
-      propertyPath: sc_AttackDataList.Array.data[2]
-      value: 
-      objectReference: {fileID: 11400000, guid: 2a3de70661738f249a98f2c553f4a34a,
-        type: 2}
-    - target: {fileID: 4024373235219793580, guid: 9d003497a6a45b1478df2bfeebb474f9,
-        type: 3}
-      propertyPath: sc_AttackDataList.Array.data[3]
-      value: 
-      objectReference: {fileID: 11400000, guid: 877a9df9af0c6ed42814060063497ef6,
-        type: 2}
-    - target: {fileID: 4024373235219793580, guid: 9d003497a6a45b1478df2bfeebb474f9,
-        type: 3}
-      propertyPath: sc_AttackDataList.Array.data[4]
-      value: 
-      objectReference: {fileID: 11400000, guid: 44f397c1bb64c934aad01d1fde78237f,
-        type: 2}
-    - target: {fileID: 4024373235219793580, guid: 9d003497a6a45b1478df2bfeebb474f9,
-        type: 3}
-      propertyPath: sc_AttackDataList.Array.data[5]
-      value: 
-      objectReference: {fileID: 11400000, guid: fdc00d5130481084d9e0917122bfebc9,
-        type: 2}
-    - target: {fileID: 4024373235219793580, guid: 9d003497a6a45b1478df2bfeebb474f9,
-        type: 3}
-      propertyPath: attackDis
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4024373235219793580, guid: 9d003497a6a45b1478df2bfeebb474f9,
-        type: 3}
-      propertyPath: sc_AttackDataList.Array.data[6]
-      value: 
-      objectReference: {fileID: 11400000, guid: e56add956d46e9343ae1fb1a0dbcf480,
-        type: 2}
-    - target: {fileID: 4024373235219793580, guid: 9d003497a6a45b1478df2bfeebb474f9,
-        type: 3}
-      propertyPath: sc_AttackDataList.Array.data[7]
-      value: 
-      objectReference: {fileID: 11400000, guid: e56add956d46e9343ae1fb1a0dbcf480,
-        type: 2}
     - target: {fileID: 6690359191272121153, guid: 9d003497a6a45b1478df2bfeebb474f9,
         type: 3}
       propertyPath: m_Name
       value: Stage1_Boss
-      objectReference: {fileID: 0}
-    - target: {fileID: 6690359191272121153, guid: 9d003497a6a45b1478df2bfeebb474f9,
-        type: 3}
-      propertyPath: m_TagString
-      value: Boss
-      objectReference: {fileID: 0}
-    - target: {fileID: 6690359191272121153, guid: 9d003497a6a45b1478df2bfeebb474f9,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6944943033508177251, guid: 9d003497a6a45b1478df2bfeebb474f9,
         type: 3}
@@ -4808,37 +4708,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8497796124916520728, guid: 9d003497a6a45b1478df2bfeebb474f9,
-        type: 3}
-      propertyPath: ActtionDataList.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8497796124916520728, guid: 9d003497a6a45b1478df2bfeebb474f9,
-        type: 3}
-      propertyPath: ActtionDataList.Array.data[0]
-      value: 
-      objectReference: {fileID: 11400000, guid: defbfc8c7f914db4a814f30a96bcb35a,
-        type: 2}
-    - target: {fileID: 8497796124916520728, guid: 9d003497a6a45b1478df2bfeebb474f9,
-        type: 3}
-      propertyPath: ActtionDataList.Array.data[1]
-      value: 
-      objectReference: {fileID: 11400000, guid: f3e62220202177e498201ad061008671,
-        type: 2}
-    - target: {fileID: 8497796124916520728, guid: 9d003497a6a45b1478df2bfeebb474f9,
-        type: 3}
-      propertyPath: ActtionDataList.Array.data[2]
-      value: 
-      objectReference: {fileID: 11400000, guid: 60acbb23e3b0cdc4bb507e1addd1991d,
-        type: 2}
-    - target: {fileID: 8497796124916520728, guid: 9d003497a6a45b1478df2bfeebb474f9,
-        type: 3}
-      propertyPath: ActtionDataList.Array.data[3]
-      value: 
-      objectReference: {fileID: 11400000, guid: cf8883d433cdcf7469d6b32ffa8aa1e5,
-        type: 2}
-    m_RemovedComponents:
-    - {fileID: 2229176893848234727, guid: 9d003497a6a45b1478df2bfeebb474f9, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d003497a6a45b1478df2bfeebb474f9, type: 3}
 --- !u!1001 &5513350778333541867
 PrefabInstance:
