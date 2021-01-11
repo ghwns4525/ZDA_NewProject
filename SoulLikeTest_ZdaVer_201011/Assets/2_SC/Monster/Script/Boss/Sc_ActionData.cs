@@ -8,9 +8,10 @@ using UnityEngine;
 public enum EAniName_Action
 {
     None,
-    Die,
-    Hit,
-    StunStart,
+    Act_Lose,
+    Act_Die,
+    Act_Hit,
+    StunStart,    
     StunRoop,
     StunEnd,
 }

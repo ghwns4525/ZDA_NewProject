@@ -2207,6 +2207,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f3e62220202177e498201ad061008671, type: 2}
   - {fileID: 11400000, guid: 60acbb23e3b0cdc4bb507e1addd1991d, type: 2}
   - {fileID: 11400000, guid: cf8883d433cdcf7469d6b32ffa8aa1e5, type: 2}
+  - {fileID: 11400000, guid: d6965de88d30e3243b49aec5c34fdace, type: 2}
+  - {fileID: 11400000, guid: f6991ce8772fb3644b8088abebf8a779, type: 2}
   damageColliders: []
   damageColliders_RightHand: []
   damageColliders_LeftHand: []
@@ -2771,6 +2773,7 @@ MonoBehaviour:
   stunGaugeLevel: 10
   stunGaugeMax: 0
   stunGaugeCurrent: 0
+  animationCount: 3
   healthBar: {fileID: 0}
   stunGaugeBar: {fileID: 0}
 --- !u!114 &1470732705
@@ -2791,6 +2794,7 @@ MonoBehaviour:
   sc_BossMoveAiHandler: {fileID: 0}
   sc_BossLocomotionHandler: {fileID: 0}
   sc_BossStats: {fileID: 0}
+  sc_PlayerStats: {fileID: 0}
   rigidbody: {fileID: 0}
   animator: {fileID: 0}
   flagTest: 0

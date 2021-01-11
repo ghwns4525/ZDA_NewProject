@@ -25,7 +25,7 @@ public class Sc_BaseBossMng : MonoBehaviour
     public Sc_BossMoveAiHandler sc_BossMoveAiHandler;
     public Sc_BossLocomotionHandler sc_BossLocomotionHandler;
     public Sc_BossStats sc_BossStats;
-    public Sc_PlayerStats sc_PlayerStats;
+    public GameObject sc_PlayerStats;
     public Rigidbody rigidbody;
     public Animator animator; // 애니메이션
 
@@ -43,7 +43,6 @@ public class Sc_BaseBossMng : MonoBehaviour
         // 상태를 체크하고 변화
         StateCheckAnimationPlayHandler(delta);
         // 죽음
-        sc_BossStats.DieHandler(bossStateChecker);
         // 스턴
         // 추적
         sc_BossMoveAiHandler.TraceTargetHandler(bossStateChecker, delta);
@@ -67,7 +66,7 @@ public class Sc_BaseBossMng : MonoBehaviour
         sc_BossMoveAiHandler = GetComponent<Sc_BossMoveAiHandler>();
         sc_BossLocomotionHandler = GetComponent<Sc_BossLocomotionHandler>();
         sc_BossStats = GetComponent<Sc_BossStats>();
-        sc_PlayerStats = GetComponent<Sc_PlayerStats>();
+        sc_PlayerStats = GameObject.FindWithTag("Player");
         animator = GetComponentInChildren<Animator>();
         rigidbody = GetComponent<Rigidbody>();
     }
@@ -97,11 +96,14 @@ public class Sc_BaseBossMng : MonoBehaviour
             return;
         }
 
- /*       // 플레이어 사망 체크
-        if(sc_PlayerStats.IsPlayerDie())
+        // 플레이어 사망 체크
+        if(sc_PlayerStats.GetComponent<Sc_PlayerStats>().IsPlayerDie())
         {
-
-        }*/
+            bossStateChecker = BossState.lose;
+            sc_BossStats.LoseHandler(bossStateChecker);
+            Debug.Log("플레이어 사망");
+            return;
+        }
 
         // 스턴은 게이지가 다 찬 상태에서 사용해야 함 이건 테스트 용
         if (sc_BossStats.StunHandler())

@@ -34,10 +34,15 @@ namespace SG
             {
                 Sc_BossStats bossStats = collider.GetComponent<Sc_BossStats>();
 
-                if(bossStats != null)
+                // 보스가 죽으면 데미지를 안받음
+                if(!bossStats.IsDie)
                 {
-                    bossStats.TakeDamage(currentWeaponDamage);
+                    if (bossStats != null)
+                    {
+                        bossStats.TakeDamage(currentWeaponDamage);
+                    }
                 }
+                
             }
         }
     }

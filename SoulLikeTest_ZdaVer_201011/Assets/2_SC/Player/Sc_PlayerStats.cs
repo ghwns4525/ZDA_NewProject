@@ -48,9 +48,9 @@ namespace SG
             }
         }
 
-/*        public bool IsPlayerDie()
+        public bool IsPlayerDie()
         {
-            if(currentHealth <= 0)
+            if (currentHealth <= 0)
             {
                 return true;
             }
@@ -58,8 +58,7 @@ namespace SG
             {
                 return false;
             }
-        }*/
-
+        }
 
     }
 

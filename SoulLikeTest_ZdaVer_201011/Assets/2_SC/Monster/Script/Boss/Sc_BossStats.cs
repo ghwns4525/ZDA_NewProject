@@ -11,6 +11,7 @@ public class Sc_BossStats : MonoBehaviour
     [SerializeField]
     int maxHp;
     int currentHp;
+
     public int CurrentHp
     {
         get
@@ -65,7 +66,14 @@ public class Sc_BossStats : MonoBehaviour
     int stunGaugeMax;
     public int stunGaugeCurrent;
 
-   // 행동 불가
+    // Hit 애니메이션 관련
+    int damageCnt = 0;
+    [SerializeField]
+    [Header("몇번맞으면 움찔할것인가")]
+    int animationCount;
+
+
+    // 행동 불가
 
     public Sc_HealthBar healthBar;
     public Sc_HealthBar stunGaugeBar;
@@ -96,16 +104,22 @@ public class Sc_BossStats : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+
         currentHp = currentHp - damage;
         TakeStunGauge(damage/2);
 
         healthBar.SetCurrentHealth(currentHp);
-        animatorHandler.PlayTargetActionAnimation(animatorHandler.GetAniName(EAniName_Action.Hit), true , false);
-        if (currentHp <= 0)
+        // 스턴일 경우 데미지는 받지만 hit 애니메이션은 안나옴
+        if(!IsStun)
         {
-            currentHp = 0;
-            animatorHandler.PlayTargetActionAnimation(animatorHandler.GetAniName(EAniName_Action.Die), true, false);
+            damageCnt++;
+            if (damageCnt / animationCount == 1)
+            {
+                animatorHandler.PlayTargetActionAnimation(animatorHandler.GetAniName(EAniName_Action.Act_Hit), true, false);
+                damageCnt = 0;
+            }            
         }
+        Debug.Log(currentHp);
     }
 
     public bool IsBossDie()
@@ -128,11 +142,18 @@ public class Sc_BossStats : MonoBehaviour
         {
             if (bossState == BossState.die)
             {
-                // 실행되는건 확인함
-                animatorHandler.PlayTargetActionAnimation(EAniName_Action.Die.ToString(), true, false);
+                animatorHandler.PlayTargetActionAnimation(EAniName_Action.Act_Die.ToString(), true, false);
             }
         }
             
+    }
+
+    public void LoseHandler(BossState bossState)
+    {
+        if (bossState == BossState.lose)
+        {
+            animatorHandler.PlayTargetActionAnimation(EAniName_Action.Act_Lose.ToString(), true, false);
+        }
     }
 
 
