@@ -9,9 +9,9 @@ public enum BossState
     idle,   // 대기
     chase,  // 추적 
     attack, // 공격
-    stun,
+    stun,   // 스턴
     die,    // 죽음 
-    lose,    // 플레이어 죽음
+    lose,   // 플레이어 죽음
 }
 public class Sc_BaseBossMng : MonoBehaviour
 {
@@ -92,10 +92,12 @@ public class Sc_BaseBossMng : MonoBehaviour
         // 죽음 상태로 진입 체크
         if (sc_BossStats.IsBossDie())
         {
-
+            bossStateChecker = BossState.die;
+            sc_BossStats.DieHandler(bossStateChecker);
+            return;
         }
 
-/*        // 플레이어 사망 체크
+ /*       // 플레이어 사망 체크
         if(sc_PlayerStats.IsPlayerDie())
         {
 

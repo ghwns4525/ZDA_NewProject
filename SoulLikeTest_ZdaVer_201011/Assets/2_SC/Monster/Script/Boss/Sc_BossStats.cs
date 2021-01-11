@@ -124,10 +124,15 @@ public class Sc_BossStats : MonoBehaviour
 
     public void DieHandler(BossState bossState)
     {
-        if(bossState == BossState.die)
+        if (currentHp <= 0)
         {
-            animatorHandler.PlayTargetActionAnimation(EAniName_Action.Die.ToString(), true, false);
+            if (bossState == BossState.die)
+            {
+                // 실행되는건 확인함
+                animatorHandler.PlayTargetActionAnimation(EAniName_Action.Die.ToString(), true, false);
+            }
         }
+            
     }
 
 
@@ -145,11 +150,12 @@ public class Sc_BossStats : MonoBehaviour
     {
         stunGaugeCurrent = stunGaugeCurrent - damage;
         stunGaugeBar.SetCurrentHealth(stunGaugeCurrent);
-        if (currentHp <= 0)
+        // 보스가 죽었을때 실행
+        /*if (currentHp <= 0)
         {
             stunGaugeCurrent = 0;
             animatorHandler.PlayTargetActionAnimation(animatorHandler.GetAniName(EAniName_Action.StunStart), true, false);
-        }
+        }*/
     }
 
     public bool StunHandler()
