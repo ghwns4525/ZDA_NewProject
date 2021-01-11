@@ -95,11 +95,11 @@ public class Sc_BaseBossMng : MonoBehaviour
 
         }
 
-        // 플레이어 사망 체크
+/*        // 플레이어 사망 체크
         if(sc_PlayerStats.IsPlayerDie())
         {
 
-        }
+        }*/
 
         // 스턴은 게이지가 다 찬 상태에서 사용해야 함 이건 테스트 용
         if (sc_BossStats.StunHandler())
