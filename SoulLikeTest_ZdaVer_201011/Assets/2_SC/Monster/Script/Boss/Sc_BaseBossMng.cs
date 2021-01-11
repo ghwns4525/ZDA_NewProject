@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEditor.PackageManager;
 using UnityEngine;
+using SG;
+
 public enum BossState
 {
     idle,   // 대기
@@ -9,6 +11,7 @@ public enum BossState
     attack, // 공격
     stun,
     die,    // 죽음 
+    lose,    // 플레이어 죽음
 }
 public class Sc_BaseBossMng : MonoBehaviour
 {
@@ -22,6 +25,7 @@ public class Sc_BaseBossMng : MonoBehaviour
     public Sc_BossMoveAiHandler sc_BossMoveAiHandler;
     public Sc_BossLocomotionHandler sc_BossLocomotionHandler;
     public Sc_BossStats sc_BossStats;
+    public Sc_PlayerStats sc_PlayerStats;
     public Rigidbody rigidbody;
     public Animator animator; // 애니메이션
 
@@ -63,6 +67,7 @@ public class Sc_BaseBossMng : MonoBehaviour
         sc_BossMoveAiHandler = GetComponent<Sc_BossMoveAiHandler>();
         sc_BossLocomotionHandler = GetComponent<Sc_BossLocomotionHandler>();
         sc_BossStats = GetComponent<Sc_BossStats>();
+        sc_PlayerStats = GetComponent<Sc_PlayerStats>();
         animator = GetComponentInChildren<Animator>();
         rigidbody = GetComponent<Rigidbody>();
     }
@@ -80,8 +85,18 @@ public class Sc_BaseBossMng : MonoBehaviour
         {
             return;
         }
+        if(bossStateChecker == BossState.lose)
+        {
+            return;
+        }
         // 죽음 상태로 진입 체크
         if (sc_BossStats.IsBossDie())
+        {
+
+        }
+
+        // 플레이어 사망 체크
+        if(sc_PlayerStats.IsPlayerDie())
         {
 
         }

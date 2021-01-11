@@ -265,6 +265,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Shock_Test",
+                    "type": "Button",
+                    "id": "6af98cd7-132b-44f0-a5f1-985a848e641b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -276,6 +284,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Test",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9d4fdead-095a-44b0-8bd2-3cc74aac6957",
+                    "path": "<Keyboard>/t",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Shock_Test",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

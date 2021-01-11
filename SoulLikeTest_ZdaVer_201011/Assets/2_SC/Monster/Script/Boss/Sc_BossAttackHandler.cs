@@ -78,7 +78,12 @@ public class Sc_BossAttackHandler : MonoBehaviour
 
             ResetAniNameTemp_RandAttackPatternList_0th();
             // 공격 모션
-            sc_BossAnimationHandler.PlayTargetAttackAnimation(aniNameTemp,true, false);
+/*            if(aniNameTemp == "Atk_Dash")
+            {
+                sc_BossAnimationHandler.PlayTargetAttackAnimation(aniNameTemp, true, true);
+            }*/
+                sc_BossAnimationHandler.PlayTargetAttackAnimation(aniNameTemp, true, false);
+            
         }
     }
 

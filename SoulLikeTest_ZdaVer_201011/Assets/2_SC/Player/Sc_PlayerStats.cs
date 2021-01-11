@@ -48,7 +48,19 @@ namespace SG
             }
         }
 
-        
+        public bool IsPlayerDie()
+        {
+            if(currentHealth <= 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+
     }
 
 }

@@ -43,6 +43,18 @@ public class Sc_BossStats : MonoBehaviour
         }
     }
 
+    bool isLose;
+    /// <summary>
+    ///  플레이어가 죽었을 때 상태
+    /// </summary>
+    public bool IsLose
+    {
+        get
+        {
+            return isLose;
+        }
+    }
+
 
 
     // Boss 스턴 스텟
@@ -118,6 +130,8 @@ public class Sc_BossStats : MonoBehaviour
         }
     }
 
+
+
     #endregion
 
 
@@ -140,10 +154,11 @@ public class Sc_BossStats : MonoBehaviour
 
     public bool StunHandler()
     {
-        if(stunGaugeCurrent <= 0)
+        if (stunGaugeCurrent <= 0)
         {
             isStun = true;
             animatorHandler.animator.SetBool("IsStun",true);
+            StartCoroutine(Wfs());
             return true;
         }
         else
@@ -160,11 +175,17 @@ public class Sc_BossStats : MonoBehaviour
             // 버그 : 계속 호출해서 계속 애니메이션이 호출됨.
             // 해결 : 한번만 호출되게 하자
 
-            animatorHandler.PlayTargetActionAnimation(EAniName_Action.StunStart.ToString(), true, false);
+            animatorHandler.PlayTargetActionAnimation(EAniName_Action.StunStart.ToString(), true, false);            
         }
     }
 
-
+    // 스턴 상태가 되면 3초 뒤 게이지 회복
+    IEnumerator Wfs()
+    {
+        yield return new WaitForSeconds(3.0f);
+        stunGaugeCurrent = stunGaugeMax;
+        stunGaugeBar.SetCurrentHealth(stunGaugeCurrent);
+    }
 
     #endregion
 }

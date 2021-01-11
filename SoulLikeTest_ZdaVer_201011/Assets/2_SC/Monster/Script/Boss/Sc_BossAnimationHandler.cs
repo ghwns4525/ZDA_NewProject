@@ -46,10 +46,22 @@ public class Sc_BossAnimationHandler : MonoBehaviour
     private Collider[] damageColliders;
 
     [SerializeField]
-    private List<Collider> damageColliders_Right;
+    private List<Collider> damageColliders_RightHand;
 
     [SerializeField]
-    private List<Collider> damageColliders_Left;
+    private List<Collider> damageColliders_LeftHand;
+
+    [SerializeField]
+    private List<Collider> damageColliders_LeftLeg;
+
+    [SerializeField]
+    private List<Collider> damageColliders_RightLeg;
+
+    [SerializeField]
+    private List<Collider> damageColliders_LeftGround;
+
+    [SerializeField]
+    private List<Collider> damageColliders_RightGround;
 
     void Start()
     {
@@ -80,13 +92,29 @@ public class Sc_BossAnimationHandler : MonoBehaviour
         /// ==  데미지 콜라이더 왼손 오른손 정리 ==
         foreach (var item in damageColliders)
         {
-            if(item.name.Contains("Right"))
+            if(item.name.Contains("RightHand"))
             {
-                damageColliders_Right.Add(item);
+                damageColliders_RightHand.Add(item);
             }
-            else if(item.name.Contains("Left"))
+            else if(item.name.Contains("LeftHand"))
             {
-                damageColliders_Left.Add(item);
+                damageColliders_LeftHand.Add(item);
+            }
+            else if(item.name.Contains("LeftLeg"))
+            {
+                damageColliders_LeftLeg.Add(item);
+            }
+            else if(item.name.Contains("RightLeg"))
+            {
+                damageColliders_RightLeg.Add(item);
+            }
+            else if(item.name.Contains("LeftGround"))
+            {
+                damageColliders_LeftGround.Add(item);
+            }
+            else if(item.name.Contains("RightGround"))
+            {
+                damageColliders_RightGround.Add(item);
             }
         }
 
@@ -143,7 +171,7 @@ public class Sc_BossAnimationHandler : MonoBehaviour
 
     public void EnableRightDamageCollider()
     {
-        foreach (var item in damageColliders_Right)
+        foreach (var item in damageColliders_RightHand)
         {
             item.enabled = true;
         }
@@ -151,7 +179,7 @@ public class Sc_BossAnimationHandler : MonoBehaviour
     }
     public void DisableRightDamageCollider()
     {
-        foreach (var item in damageColliders_Right)
+        foreach (var item in damageColliders_RightHand)
         {
             item.enabled = false;
         }
@@ -159,7 +187,7 @@ public class Sc_BossAnimationHandler : MonoBehaviour
 
     public void EnableLeftDamageCollider()
     {
-        foreach (var item in damageColliders_Left)
+        foreach (var item in damageColliders_LeftHand)
         {
             item.enabled = true;
         }
@@ -167,7 +195,71 @@ public class Sc_BossAnimationHandler : MonoBehaviour
     }
     public void DisableLeftDamageCollider()
     {
-        foreach (var item in damageColliders_Left)
+        foreach (var item in damageColliders_LeftHand)
+        {
+            item.enabled = false;
+        }
+    }
+
+    public void EnableLeftLegDamageCollider()
+    {
+        foreach (var item in damageColliders_LeftLeg)
+        {
+            item.enabled = true;
+        }
+
+    }
+    public void DisableLeftLegDamageCollider()
+    {
+        foreach (var item in damageColliders_LeftLeg)
+        {
+            item.enabled = false;
+        }
+    }
+
+    public void EnableRightLegDamageCollider()
+    {
+        foreach (var item in damageColliders_RightLeg)
+        {
+            item.enabled = true;
+        }
+
+    }
+    public void DisableRightLegDamageCollider()
+    {
+        foreach (var item in damageColliders_RightLeg)
+        {
+            item.enabled = false;
+        }
+    }
+
+    public void EnableLeftGroundDamageCollider()
+    {
+        foreach (var item in damageColliders_LeftGround)
+        {
+            item.enabled = true;
+        }
+
+    }
+    public void DisableLeftGroundDamageCollider()
+    {
+        foreach (var item in damageColliders_LeftGround)
+        {
+            item.enabled = false;
+        }
+    }
+
+    public void EnableRightGroundDamageCollider()
+    {
+        foreach (var item in damageColliders_RightGround)
+        {
+            item.enabled = true;
+        }
+
+    }
+    public void DisableRightGroundDamageCollider()
+    {
+        foreach (var item in damageColliders_RightGround)
         {
             item.enabled = false;
         }

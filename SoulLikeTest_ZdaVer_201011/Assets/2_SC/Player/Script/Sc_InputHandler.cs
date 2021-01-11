@@ -65,7 +65,11 @@ namespace SG
         /// 키보드 R키  :: 재장전
         /// </summary>
         public bool input_R_Key;
-    
+
+        /// <summary>
+        /// 스턴게이지 0으로 만드는키
+        /// </summary>
+        public bool TestT_Input;
 
 
         public bool rollFlag;
@@ -97,6 +101,7 @@ namespace SG
             attackType = AttackType.None;
             input_R_Key = false;
             reloadFlag = false;
+            TestT_Input = false;
             mouseWheelUpDownFlag = false;
         }
 

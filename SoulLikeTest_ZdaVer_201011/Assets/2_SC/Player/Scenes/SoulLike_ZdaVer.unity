@@ -1148,6 +1148,7 @@ MonoBehaviour:
   input_mouseMid: 0
   input_mouseWheelUpDown: 0
   input_R_Key: 0
+  TestT_Input: 0
   rollFlag: 0
   sprintFlag_shift: 0
   rollInputTimer: 0
@@ -3196,6 +3197,7 @@ MonoBehaviour:
   input_mouseMid: 0
   input_mouseWheelUpDown: 0
   input_R_Key: 0
+  TestT_Input: 0
   rollFlag: 0
   sprintFlag_shift: 0
   rollInputTimer: 0

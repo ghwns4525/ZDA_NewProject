@@ -25,6 +25,7 @@ public class Sc_AnimationIdleExitSetter : StateMachineBehaviour
         if(boss == null)
         {
             boss = GameObject.FindGameObjectWithTag("Boss").GetComponent<Sc_BaseBossMng>();
+            
         }
          
         boss.GetComponent<Sc_BaseBossMng>().bossStateChecker = BossState.idle;

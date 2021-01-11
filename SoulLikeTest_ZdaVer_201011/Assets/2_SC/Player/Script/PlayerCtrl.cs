@@ -278,6 +278,14 @@ public class @PlayerCtrl : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Shock_Test"",
+                    ""type"": ""Button"",
+                    ""id"": ""6af98cd7-132b-44f0-a5f1-985a848e641b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -289,6 +297,17 @@ public class @PlayerCtrl : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Test"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9d4fdead-095a-44b0-8bd2-3cc74aac6957"",
+                    ""path"": ""<Keyboard>/t"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Shock_Test"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -492,6 +511,7 @@ public class @PlayerCtrl : IInputActionCollection, IDisposable
         // Test
         m_Test = asset.FindActionMap("Test", throwIfNotFound: true);
         m_Test_Test = m_Test.FindAction("Test", throwIfNotFound: true);
+        m_Test_Shock_Test = m_Test.FindAction("Shock_Test", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Menu = m_UI.FindAction("Menu", throwIfNotFound: true);
@@ -675,11 +695,13 @@ public class @PlayerCtrl : IInputActionCollection, IDisposable
     private readonly InputActionMap m_Test;
     private ITestActions m_TestActionsCallbackInterface;
     private readonly InputAction m_Test_Test;
+    private readonly InputAction m_Test_Shock_Test;
     public struct TestActions
     {
         private @PlayerCtrl m_Wrapper;
         public TestActions(@PlayerCtrl wrapper) { m_Wrapper = wrapper; }
         public InputAction @Test => m_Wrapper.m_Test_Test;
+        public InputAction @Shock_Test => m_Wrapper.m_Test_Shock_Test;
         public InputActionMap Get() { return m_Wrapper.m_Test; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -692,6 +714,9 @@ public class @PlayerCtrl : IInputActionCollection, IDisposable
                 @Test.started -= m_Wrapper.m_TestActionsCallbackInterface.OnTest;
                 @Test.performed -= m_Wrapper.m_TestActionsCallbackInterface.OnTest;
                 @Test.canceled -= m_Wrapper.m_TestActionsCallbackInterface.OnTest;
+                @Shock_Test.started -= m_Wrapper.m_TestActionsCallbackInterface.OnShock_Test;
+                @Shock_Test.performed -= m_Wrapper.m_TestActionsCallbackInterface.OnShock_Test;
+                @Shock_Test.canceled -= m_Wrapper.m_TestActionsCallbackInterface.OnShock_Test;
             }
             m_Wrapper.m_TestActionsCallbackInterface = instance;
             if (instance != null)
@@ -699,6 +724,9 @@ public class @PlayerCtrl : IInputActionCollection, IDisposable
                 @Test.started += instance.OnTest;
                 @Test.performed += instance.OnTest;
                 @Test.canceled += instance.OnTest;
+                @Shock_Test.started += instance.OnShock_Test;
+                @Shock_Test.performed += instance.OnShock_Test;
+                @Shock_Test.canceled += instance.OnShock_Test;
             }
         }
     }
@@ -818,6 +846,7 @@ public class @PlayerCtrl : IInputActionCollection, IDisposable
     public interface ITestActions
     {
         void OnTest(InputAction.CallbackContext context);
+        void OnShock_Test(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

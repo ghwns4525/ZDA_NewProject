@@ -9508,6 +9508,41 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 8533801292140184553, guid: 53d6c591651800d4eaa5d7a9070488d8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8533801292140184555, guid: 53d6c591651800d4eaa5d7a9070488d8,
+        type: 3}
+      propertyPath: m_FillAmount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8533801292422625255, guid: 53d6c591651800d4eaa5d7a9070488d8,
+        type: 3}
+      propertyPath: m_FillAmount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8533801292488706730, guid: 53d6c591651800d4eaa5d7a9070488d8,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8533801292488706730, guid: 53d6c591651800d4eaa5d7a9070488d8,
+        type: 3}
+      propertyPath: m_ShowMaskGraphic
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8533801292488706731, guid: 53d6c591651800d4eaa5d7a9070488d8,
+        type: 3}
+      propertyPath: m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8533801292488706731, guid: 53d6c591651800d4eaa5d7a9070488d8,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53d6c591651800d4eaa5d7a9070488d8, type: 3}
 --- !u!4 &8538406035954234056 stripped
