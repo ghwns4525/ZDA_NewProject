@@ -78,15 +78,20 @@ public class Sc_BossAttackHandler : MonoBehaviour
 
             ResetAniNameTemp_RandAttackPatternList_0th();
             // 공격 모션
-/*            if(aniNameTemp == "Atk_Dash")
+            if(aniNameTemp == "Atk_Dash")
             {
                 sc_BossAnimationHandler.PlayTargetAttackAnimation(aniNameTemp, true, true);
-            }*/
+            }
+            else
+            {
                 sc_BossAnimationHandler.PlayTargetAttackAnimation(aniNameTemp, true, false);
+            }
+
             
         }
     }
 
+    // 랜덤 공격 패턴
     void RandomAttackPatternConstructor()
     {
         // Rand일때 boss_Attck_Pattern_Temp 초기화한다.
