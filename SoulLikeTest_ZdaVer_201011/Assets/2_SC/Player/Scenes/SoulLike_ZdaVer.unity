@@ -133,6 +133,11 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 1ac4fb8a694e12042bb65a5171360446, type: 2}
+    - target: {fileID: 3450052344633557520, guid: a7faa2d06e22c674c97144a6da1edef9,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4713878570357206890, guid: a7faa2d06e22c674c97144a6da1edef9,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -382,6 +387,25 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 996a7896cf3116240801b2902db1b905, type: 3}
+--- !u!1 &82324827 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8588459379381067129, guid: a7faa2d06e22c674c97144a6da1edef9,
+    type: 3}
+  m_PrefabInstance: {fileID: 8781050}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &82324829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 82324827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12f6a3cab37be1b4795e46185ae9fe23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 0}
 --- !u!1 &96317150
 GameObject:
   m_ObjectHideFlags: 0
@@ -1069,7 +1093,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 0}
-  animator: {fileID: 0}
   isPatrol: 0
   isTrace: 0
   walkSpeed: 1.5

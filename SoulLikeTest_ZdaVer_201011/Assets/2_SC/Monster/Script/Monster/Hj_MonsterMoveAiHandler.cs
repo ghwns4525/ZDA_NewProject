@@ -8,8 +8,6 @@ public class Hj_MonsterMoveAiHandler : MonoBehaviour
     [SerializeField]
     NavMeshAgent agent;
     [SerializeField]
-    Animator animator;
-    [SerializeField]
     bool isPatrol;
     [SerializeField]
     bool isTrace;
@@ -21,13 +19,14 @@ public class Hj_MonsterMoveAiHandler : MonoBehaviour
     private GameObject player;
     private Vector3 playerPoint;
 
+    Hj_MonsterAnimationHandler hj_animationHandler;
+
     // Start is called before the first frame update
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        animator = GetComponentInChildren<Animator>();
         player = GameObject.FindWithTag("Player");
-        
+        hj_animationHandler = GetComponentInChildren<Hj_MonsterAnimationHandler>();
     }
 
     // Update is called once per frame
@@ -57,7 +56,7 @@ public class Hj_MonsterMoveAiHandler : MonoBehaviour
         if(!isPatrol)
         {
             // 애니메이션을 walk로 넣어야할듯 뛰는게 안보임
-            animator.CrossFade("Walk_Front", 0.12f);
+            hj_animationHandler.animator.SetFloat("Patrol", 0.1f);
         }
         // 속도 조절
         agent.speed = traceSpeed;
@@ -72,8 +71,9 @@ public class Hj_MonsterMoveAiHandler : MonoBehaviour
             // 목적지를 설정한다.(플레이어 혹은 일정한 지역이 될수도 있음)
             agent.destination = target;
 
-            // 애니메이션은 walk로 넣는다.
-            animator.CrossFade("Walk_Front", 0.12f);
+            // 애니메이션은 blend값을 조절해서 멈추고 걷고 뛰게 조절
+            hj_animationHandler.animator.SetFloat("Patrol", 0.1f);
+
             // 속도 조절
             agent.speed = walkSpeed;
             Debug.Log(agent.speed);
@@ -82,8 +82,13 @@ public class Hj_MonsterMoveAiHandler : MonoBehaviour
 
     void Stop()
     {
-        agent.isStopped = true;
-        // 이렇게 하고 애니메이션은 idle을 넣으면 순찰을 안하는 효과
-        animator.CrossFade("idle", 0.12f);
+        if(!isTrace)
+        {
+            agent.isStopped = true;
+            // 이렇게 하고 애니메이션은 idle을 넣으면 순찰을 안하는 효과
+            //hj_animationHandler.PlayTargetActionAnimation("idle");
+            hj_animationHandler.animator.SetFloat("Patrol", 0);
+        }
+
     }
 }

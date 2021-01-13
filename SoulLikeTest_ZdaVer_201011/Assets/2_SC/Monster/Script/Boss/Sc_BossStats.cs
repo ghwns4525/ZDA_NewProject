@@ -202,7 +202,7 @@ public class Sc_BossStats : MonoBehaviour
             // 버그 : 계속 호출해서 계속 애니메이션이 호출됨.
             // 해결 : 한번만 호출되게 하자
 
-            animatorHandler.PlayTargetActionAnimation(EAniName_Action.StunStart.ToString(), true, false);            
+            animatorHandler.PlayTargetActionAnimation(EAniName_Action.StunStart.ToString(), true, false);
         }
     }
 
