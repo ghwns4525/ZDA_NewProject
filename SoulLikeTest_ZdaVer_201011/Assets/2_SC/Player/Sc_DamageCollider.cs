@@ -44,6 +44,18 @@ namespace SG
                 }
                 
             }
+            if(collider.tag == "Enemy")
+            {
+                Hj_MonsterStats monsterStats = collider.GetComponent<Hj_MonsterStats>();
+                if(!monsterStats.IsDie)
+                {
+                    if (monsterStats != null)
+                    {
+                        monsterStats.TakeDamage(currentWeaponDamage);
+                    }
+                }
+                
+            }
         }
     }
 }

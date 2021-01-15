@@ -44,7 +44,7 @@ public class Sc_AttackData : ScriptableObject
     public float attackRange;
 
     /// <summary>
-    /// 공격시 데미지 범위범위
+    /// 공격시 데미지 범위
     /// </summary>
     [SerializeField]
     public float attackDamageRange;

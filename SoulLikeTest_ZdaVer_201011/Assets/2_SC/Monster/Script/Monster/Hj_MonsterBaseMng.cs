@@ -14,10 +14,12 @@ public enum MonsterState
 
 public class Hj_MonsterBaseMng : MonoBehaviour
 {
+    [Header("상태를 변경할 거리")]
     [SerializeField]
-    float AttackDistance;
+    float AttackDistance;    
     [SerializeField]
     float ChaseDistance;
+
     
     public MonsterState monsterStateCheck = MonsterState.idle;
 
@@ -43,24 +45,17 @@ public class Hj_MonsterBaseMng : MonoBehaviour
             // 몬스터의 상태를 공격으로 바꿈
             monsterStateCheck = MonsterState.attack;
         }
-        else if (dist > AttackDistance && dist < ChaseDistance)
-        {
-            // 몬스터의 상태를 추격으로 바꿈
-            monsterStateCheck = MonsterState.chase;
-        }
-        else if (this.transform.position.x > hj_MonsterMoveAiHandler.ChaseLimit.x ||
-            this.transform.position.z > hj_MonsterMoveAiHandler.ChaseLimit.z ||
-            this.transform.position.x < hj_MonsterMoveAiHandler.ChaseLimitC.x ||
-            this.transform.position.z < hj_MonsterMoveAiHandler.ChaseLimitC.z)
+        else if (hj_MonsterMoveAiHandler.IsComeback)
         {
             // 몬스터의 상태를 복귀로 바꿈
             monsterStateCheck = MonsterState.comeback;
         }
-        else if (hj_MonsterMoveAiHandler.IsPatrol && 
-            (this.transform.position.x < hj_MonsterMoveAiHandler.ChaseLimit.x ||
-            this.transform.position.z < hj_MonsterMoveAiHandler.ChaseLimit.z ||
-            this.transform.position.x > hj_MonsterMoveAiHandler.ChaseLimitC.x ||
-            this.transform.position.z > hj_MonsterMoveAiHandler.ChaseLimitC.z))
+        else if (dist > AttackDistance && dist < ChaseDistance && !hj_MonsterMoveAiHandler.IsComeback)
+        {
+            // 몬스터의 상태를 추격으로 바꿈
+            monsterStateCheck = MonsterState.chase;
+        }        
+        else if (hj_MonsterMoveAiHandler.IsPatrol && !hj_MonsterMoveAiHandler.IsComeback)
         {
             // 몬스터의 상태를 경계로 바꿈
             monsterStateCheck = MonsterState.boundary;

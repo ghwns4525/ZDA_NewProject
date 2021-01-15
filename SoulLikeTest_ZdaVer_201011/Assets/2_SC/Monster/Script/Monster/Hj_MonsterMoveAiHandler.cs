@@ -6,26 +6,25 @@ using UnityEngine.AI;
 public class Hj_MonsterMoveAiHandler : MonoBehaviour
 {
     [SerializeField]
-    NavMeshAgent agent;
-    [SerializeField]
     bool isPatrol;
     [SerializeField]
     float walkSpeed;
     [SerializeField]
     float traceSpeed;
-    [SerializeField]
-    Vector3 startingPosition;
-    [SerializeField]
-    bool isStarting;
+    [Header("추격 가능한 범위(반지름)")]
     [SerializeField]
     float chaseRange;
-    [SerializeField]
+
+    NavMeshAgent agent;
+
     Vector3 chaseLimit;
-    [SerializeField]
     Vector3 chaseLimitC;
+    Vector3 startingPosition;
 
     bool isTrace;
-    
+    bool isComeback;
+    bool isStarting;
+
 
     GameObject player;
     private Vector3 playerPoint;
@@ -33,6 +32,7 @@ public class Hj_MonsterMoveAiHandler : MonoBehaviour
     Hj_MonsterAnimationHandler hj_animationHandler;
     Hj_MonsterBaseMng hj_MonsterBaseMng;
 
+    #region == Properties ==
     public GameObject TargetPlayer
     {
         get
@@ -49,21 +49,14 @@ public class Hj_MonsterMoveAiHandler : MonoBehaviour
         }
     }
 
-
-    public Vector3 ChaseLimit
+    public bool IsComeback
     {
         get
         {
-            return chaseLimit;
+            return isComeback;
         }
     }
-    public Vector3 ChaseLimitC
-    {
-        get
-        {
-            return chaseLimitC;
-        }
-    }
+    #endregion
 
     void Awake()
     {
@@ -96,10 +89,20 @@ public class Hj_MonsterMoveAiHandler : MonoBehaviour
         if (this.transform.position == startingPosition)
         {
             isStarting = true;
+            isComeback = false;
         }
         else
         {
-            isStarting = false;
+            isStarting = false;            
+        }
+
+        // 몬스터가 움직일수 있는 범위
+        if(this.transform.position.x > chaseLimit.x ||
+            this.transform.position.z > chaseLimit.z ||
+            this.transform.position.x < chaseLimitC.x ||
+            this.transform.position.z < chaseLimitC.z)
+        {
+            isComeback = true;
         }
     }
 
@@ -154,10 +157,9 @@ public class Hj_MonsterMoveAiHandler : MonoBehaviour
         if (hj_MonsterBaseMng.monsterStateCheck == MonsterState.comeback)
         {
             if (!isStarting)
-            {
-                //isPatrol = false;
+            {                
                 // 몬스터가 처음 있던 자리로 복귀
-                agent.destination = target;
+                agent.destination = target;                
             }
         }
     }

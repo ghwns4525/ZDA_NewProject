@@ -8,6 +8,8 @@ public class Hj_MonsterAnimationHandler : MonoBehaviour
 
     [SerializeField]
     public Animator animator;
+    [SerializeField]
+    Rigidbody rigidbody;
 
     // Start is called before the first frame update
     void Start()
