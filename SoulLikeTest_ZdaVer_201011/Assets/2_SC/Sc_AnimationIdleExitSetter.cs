@@ -5,6 +5,7 @@ using UnityEngine;
 public class Sc_AnimationIdleExitSetter : StateMachineBehaviour
 {
     public Sc_BaseBossMng boss;
+    public Hj_MonsterBaseMng monster;
     
     
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
@@ -27,8 +28,13 @@ public class Sc_AnimationIdleExitSetter : StateMachineBehaviour
             boss = GameObject.FindGameObjectWithTag("Boss").GetComponent<Sc_BaseBossMng>();
             
         }
+        if(monster == null)
+        {
+            monster = GameObject.FindGameObjectWithTag("Enemy").GetComponent<Hj_MonsterBaseMng>();
+        }
          
         boss.GetComponent<Sc_BaseBossMng>().bossStateChecker = BossState.idle;
+        monster.GetComponent<Hj_MonsterBaseMng>().monsterStateCheck = MonsterState.idle;
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
