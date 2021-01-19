@@ -3901,7 +3901,7 @@ PrefabInstance:
     - target: {fileID: 4024373235219793556, guid: 9d003497a6a45b1478df2bfeebb474f9,
         type: 3}
       propertyPath: animationCount
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6690359191272121153, guid: 9d003497a6a45b1478df2bfeebb474f9,
         type: 3}
@@ -3911,7 +3911,7 @@ PrefabInstance:
     - target: {fileID: 6690359191272121153, guid: 9d003497a6a45b1478df2bfeebb474f9,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6944943033508177251, guid: 9d003497a6a45b1478df2bfeebb474f9,
         type: 3}
@@ -4051,6 +4051,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 389873656, guid: cebc39d4d68db4e41b9db043689df7ca, type: 3}
+      propertyPath: maxHp
+      value: 1000
+      objectReference: {fileID: 0}
     - target: {fileID: 9153416859748703593, guid: cebc39d4d68db4e41b9db043689df7ca,
         type: 3}
       propertyPath: m_LocalPosition.x

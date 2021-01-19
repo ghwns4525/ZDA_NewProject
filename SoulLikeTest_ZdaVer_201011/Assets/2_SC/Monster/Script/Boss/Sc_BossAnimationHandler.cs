@@ -89,7 +89,7 @@ public class Sc_BossAnimationHandler : MonoBehaviour
 
         rigidbody = GetComponentInParent<Rigidbody>();
 
-        /// ==  데미지 콜라이더 왼손 오른손 정리 ==
+        /// ==  데미지 콜라이더 정리 ==
         foreach (var item in damageColliders)
         {
             if(item.name.Contains("RightHand"))
