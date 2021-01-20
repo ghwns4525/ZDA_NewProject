@@ -37,7 +37,7 @@ public class Hj_MonsterStats : MonoBehaviour
     {
         currentHp = currentHp - Damage;
         Debug.Log(currentHp);
-        hj_MonsterAnimationHandler.PlayTargetActionAnimation("Act_Hit");
+        hj_MonsterAnimationHandler.PlayTargetActionAnimation("Act_Hit", true);
     }
 
     void MonsterDie()
@@ -45,7 +45,7 @@ public class Hj_MonsterStats : MonoBehaviour
         if (currentHp <= 0)
         {
             isDie = true;
-            hj_MonsterAnimationHandler.PlayTargetActionAnimation("Act_Die");
+            hj_MonsterAnimationHandler.PlayTargetActionAnimation("Act_Die", true);
         }
         else
         {

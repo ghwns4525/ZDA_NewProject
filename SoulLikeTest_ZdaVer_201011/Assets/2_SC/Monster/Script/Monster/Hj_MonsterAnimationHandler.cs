@@ -27,8 +27,9 @@ public class Hj_MonsterAnimationHandler : MonoBehaviour
         isInteracting = animator.GetBool(hash_isInteracting);
     }
 
-    public void PlayTargetActionAnimation(string actionName)
+    public void PlayTargetActionAnimation(string actionName, bool isInteracting)
     {
+        animator.SetBool("isInteracting", isInteracting);
         animator.CrossFade(actionName, 0.12f);
     }
 }

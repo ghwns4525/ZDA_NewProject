@@ -22,13 +22,15 @@ public class Hj_MonsterBaseMng : MonoBehaviour
 
     
     public MonsterState monsterStateCheck = MonsterState.idle;
-
+    
+    Hj_MonsterAnimationHandler hj_MonsterAnimationHandler;
     Hj_MonsterMoveAiHandler hj_MonsterMoveAiHandler;
 
     // Start is called before the first frame update
     void Start()
     {
         hj_MonsterMoveAiHandler = GetComponent<Hj_MonsterMoveAiHandler>();
+        hj_MonsterAnimationHandler = GetComponent<Hj_MonsterAnimationHandler>();
     }
 
     // Update is called once per frame
@@ -60,7 +62,7 @@ public class Hj_MonsterBaseMng : MonoBehaviour
             // 몬스터의 상태를 경계로 바꿈
             monsterStateCheck = MonsterState.boundary;
         }
-        else if(!hj_MonsterMoveAiHandler.IsPatrol)
+        else if(!hj_MonsterMoveAiHandler.IsPatrol || hj_MonsterAnimationHandler.isInteracting)
         {
             // 몬스터의 상태를 대기로 바꿈
             monsterStateCheck = MonsterState.idle;

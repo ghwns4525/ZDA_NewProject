@@ -86,6 +86,11 @@ public class Hj_MonsterMoveAiHandler : MonoBehaviour
         Chase(playerPoint);
         Comeback(startingPosition);
 
+        if(hj_animationHandler.isInteracting)
+        {
+            isStarting = true;
+        }
+
         if (this.transform.position == startingPosition)
         {
             isStarting = true;
