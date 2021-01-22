@@ -12,6 +12,7 @@ public class Hj_MonsterAnimationHandler : MonoBehaviour
     Rigidbody rigidbody;
 
     public bool isInteracting;
+    [SerializeField] List<Sc_ActionData> ActtionDataList;
 
     public readonly int hash_isInteracting = Animator.StringToHash("isInteracting");
 
@@ -25,6 +26,11 @@ public class Hj_MonsterAnimationHandler : MonoBehaviour
     void Update()
     {
         isInteracting = animator.GetBool(hash_isInteracting);
+        if(isInteracting)
+        {
+            animator.SetFloat("PatrolY", 0);
+            Debug.Log("패트롤 0");
+        }
     }
 
     public void PlayTargetActionAnimation(string actionName, bool isInteracting)

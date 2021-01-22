@@ -117,7 +117,7 @@ public class Sc_BossStats : MonoBehaviour
             {
                 animatorHandler.PlayTargetActionAnimation(animatorHandler.GetAniName(EAniName_Action.Act_Hit), true, false);
                 damageCnt = 0;
-            }            
+            }
         }
         Debug.Log(currentHp);
     }

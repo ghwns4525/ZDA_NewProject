@@ -44,6 +44,7 @@ namespace SG
                 }
                 
             }
+
             if(collider.tag == "Enemy")
             {
                 Hj_MonsterStats monsterStats = collider.GetComponent<Hj_MonsterStats>();

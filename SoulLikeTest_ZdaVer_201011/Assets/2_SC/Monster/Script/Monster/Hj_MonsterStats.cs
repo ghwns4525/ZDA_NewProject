@@ -11,6 +11,7 @@ public class Hj_MonsterStats : MonoBehaviour
     bool isDie;
 
     Hj_MonsterAnimationHandler hj_MonsterAnimationHandler;
+    Hj_MonsterBaseMng hj_MonsterBaseMng;
 
     public bool IsDie
     {
@@ -25,19 +26,21 @@ public class Hj_MonsterStats : MonoBehaviour
     {
         currentHp = maxHp;
         hj_MonsterAnimationHandler = GetComponentInChildren<Hj_MonsterAnimationHandler>();
+        hj_MonsterBaseMng = GetComponent<Hj_MonsterBaseMng>();
     }
 
     // Update is called once per frame
     void Update()
     {
         MonsterDie();
+        Attack();
     }
 
     public void TakeDamage(int Damage)
     {
         currentHp = currentHp - Damage;
+        hj_MonsterAnimationHandler.PlayTargetActionAnimation(EAniName_Action.Act_Hit.ToString(), true);
         Debug.Log(currentHp);
-        hj_MonsterAnimationHandler.PlayTargetActionAnimation("Act_Hit", true);
     }
 
     void MonsterDie()
@@ -50,6 +53,15 @@ public class Hj_MonsterStats : MonoBehaviour
         else
         {
             isDie = false;
+        }
+    }
+
+    void Attack()
+    {
+        if (hj_MonsterBaseMng.monsterStateCheck == MonsterState.attack)
+        {
+            hj_MonsterAnimationHandler.PlayTargetActionAnimation(EAniName_Action.Act_Attack.ToString(), true);
+            Debug.Log("공격실행");
         }
     }
 }

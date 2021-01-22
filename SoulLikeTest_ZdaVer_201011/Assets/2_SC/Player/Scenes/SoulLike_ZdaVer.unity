@@ -4053,8 +4053,31 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 389873656, guid: cebc39d4d68db4e41b9db043689df7ca, type: 3}
       propertyPath: maxHp
-      value: 50
+      value: 1000
       objectReference: {fileID: 0}
+    - target: {fileID: 9153416859623404391, guid: cebc39d4d68db4e41b9db043689df7ca,
+        type: 3}
+      propertyPath: ActtionDataList.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9153416859623404391, guid: cebc39d4d68db4e41b9db043689df7ca,
+        type: 3}
+      propertyPath: ActtionDataList.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: defbfc8c7f914db4a814f30a96bcb35a,
+        type: 2}
+    - target: {fileID: 9153416859623404391, guid: cebc39d4d68db4e41b9db043689df7ca,
+        type: 3}
+      propertyPath: ActtionDataList.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: d6965de88d30e3243b49aec5c34fdace,
+        type: 2}
+    - target: {fileID: 9153416859623404391, guid: cebc39d4d68db4e41b9db043689df7ca,
+        type: 3}
+      propertyPath: ActtionDataList.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 49a0def934e7cbd4987187e1760769f8,
+        type: 2}
     - target: {fileID: 9153416859748703593, guid: cebc39d4d68db4e41b9db043689df7ca,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4125,10 +4148,20 @@ PrefabInstance:
       propertyPath: ChaseDistance
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 9153416859748703596, guid: cebc39d4d68db4e41b9db043689df7ca,
+        type: 3}
+      propertyPath: AttackDistance
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 9153416859748703598, guid: cebc39d4d68db4e41b9db043689df7ca,
         type: 3}
       propertyPath: chaseRange
-      value: 5
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 9153416859748703598, guid: cebc39d4d68db4e41b9db043689df7ca,
+        type: 3}
+      propertyPath: isPatrol
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cebc39d4d68db4e41b9db043689df7ca, type: 3}

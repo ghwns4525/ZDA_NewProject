@@ -86,12 +86,8 @@ public class Hj_MonsterMoveAiHandler : MonoBehaviour
         Chase(playerPoint);
         Comeback(startingPosition);
 
-        if(hj_animationHandler.isInteracting)
-        {
-            isStarting = true;
-        }
 
-        if (this.transform.position == startingPosition)
+        if (this.transform.position == startingPosition || hj_MonsterBaseMng.monsterStateCheck == MonsterState.attack)
         {
             isStarting = true;
             isComeback = false;
@@ -144,7 +140,7 @@ public class Hj_MonsterMoveAiHandler : MonoBehaviour
 
     void Stop()
     {
-        if (hj_MonsterBaseMng.monsterStateCheck == MonsterState.idle)
+        if (hj_MonsterBaseMng.monsterStateCheck == MonsterState.waiting)
         {
             Debug.Log("정지");
             if (isStarting)
@@ -152,7 +148,7 @@ public class Hj_MonsterMoveAiHandler : MonoBehaviour
                 agent.isStopped = true;
                 // 이렇게 하고 애니메이션은 idle을 넣으면 순찰을 안하는 효과
                 //hj_animationHandler.PlayTargetActionAnimation("idle");
-                hj_animationHandler.animator.SetFloat("PatrolY", 0);
+                hj_animationHandler.animator.SetFloat("PatrolY", 0);    
             }
         }          
     }
@@ -168,5 +164,7 @@ public class Hj_MonsterMoveAiHandler : MonoBehaviour
             }
         }
     }
+
+
 
 }

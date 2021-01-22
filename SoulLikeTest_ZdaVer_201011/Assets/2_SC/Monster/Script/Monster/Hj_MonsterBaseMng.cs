@@ -4,7 +4,8 @@ using UnityEngine;
 
 public enum MonsterState
 {
-    idle,       // 대기
+    idle,       // 기본값
+    waiting,    // 대기
     boundary,   // 경계
     chase,      // 추격
     attack,     // 공격
@@ -30,7 +31,7 @@ public class Hj_MonsterBaseMng : MonoBehaviour
     void Start()
     {
         hj_MonsterMoveAiHandler = GetComponent<Hj_MonsterMoveAiHandler>();
-        hj_MonsterAnimationHandler = GetComponent<Hj_MonsterAnimationHandler>();
+        hj_MonsterAnimationHandler = GetComponentInChildren<Hj_MonsterAnimationHandler>();
     }
 
     // Update is called once per frame
@@ -42,6 +43,7 @@ public class Hj_MonsterBaseMng : MonoBehaviour
     void MonsterStateChacker()
     {
         float dist = Vector3.Distance(hj_MonsterMoveAiHandler.TargetPlayer.transform.position, this.transform.position);
+
         if (dist < AttackDistance)
         {
             // 몬스터의 상태를 공격으로 바꿈
@@ -52,22 +54,25 @@ public class Hj_MonsterBaseMng : MonoBehaviour
             // 몬스터의 상태를 복귀로 바꿈
             monsterStateCheck = MonsterState.comeback;
         }
-        else if (dist > AttackDistance && dist < ChaseDistance && !hj_MonsterMoveAiHandler.IsComeback)
+        else if (dist > AttackDistance && dist < ChaseDistance && !hj_MonsterMoveAiHandler.IsComeback && !hj_MonsterAnimationHandler.isInteracting)
         {
             // 몬스터의 상태를 추격으로 바꿈
             monsterStateCheck = MonsterState.chase;
         }        
-        else if (hj_MonsterMoveAiHandler.IsPatrol && !hj_MonsterMoveAiHandler.IsComeback)
+        else if (hj_MonsterMoveAiHandler.IsPatrol && !hj_MonsterMoveAiHandler.IsComeback && !hj_MonsterAnimationHandler.isInteracting)
         {
             // 몬스터의 상태를 경계로 바꿈
             monsterStateCheck = MonsterState.boundary;
         }
-        else if(!hj_MonsterMoveAiHandler.IsPatrol || hj_MonsterAnimationHandler.isInteracting)
+        else if(!hj_MonsterMoveAiHandler.IsPatrol)
         {
             // 몬스터의 상태를 대기로 바꿈
+            monsterStateCheck = MonsterState.waiting;
+        }
+        else if (hj_MonsterAnimationHandler.isInteracting)
+        {
             monsterStateCheck = MonsterState.idle;
         }
-        
         Debug.Log(monsterStateCheck);
     }
 }

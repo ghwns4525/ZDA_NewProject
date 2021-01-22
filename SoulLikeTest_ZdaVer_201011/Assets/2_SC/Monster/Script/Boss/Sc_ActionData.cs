@@ -14,6 +14,7 @@ public enum EAniName_Action
     StunStart,    
     StunRoop,
     StunEnd,
+    Act_Attack,
 }
 
 
