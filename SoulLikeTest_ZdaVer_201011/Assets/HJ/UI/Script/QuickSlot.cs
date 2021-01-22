@@ -62,7 +62,7 @@ namespace SG
             }*/
             quickSlotImage.sprite = ItemSprite[slotNum];
             ItemText.text = string.Format("{0:#,##0}", ItemCount[slotNum]);
-            Debug.Log(slotNum);
+            //Debug.Log(slotNum);
         }
     }
 }

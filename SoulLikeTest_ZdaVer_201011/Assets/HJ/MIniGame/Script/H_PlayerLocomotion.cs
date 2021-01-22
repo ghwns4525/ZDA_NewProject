@@ -64,7 +64,7 @@ public class H_PlayerLocomotion : MonoBehaviour
     void Update()
     {
         float delta = Time.deltaTime;
-        Debug.Log("moveSpeed : " + moveSpeed);
+        //Debug.Log("moveSpeed : " + moveSpeed);
 
     }
     #region Movement

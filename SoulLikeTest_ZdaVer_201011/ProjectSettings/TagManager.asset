@@ -7,6 +7,18 @@ TagManager:
   - Hittable
   - Enemy
   - Boss
+  - Wall
+  - SlowZone
+  - TurretBullet
+  - InduceTurret
+  - PlayerTransform
+  - Bullet
+  - Obstacle
+  - SpinTurret
+  - DontDestroyBullet
+  - ShotTurret
+  - ButtonA
+  - Item
   layers:
   - Default
   - TransparentFX

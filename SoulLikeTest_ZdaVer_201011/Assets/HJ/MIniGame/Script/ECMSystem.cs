@@ -40,7 +40,7 @@ public class ECMSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(maxSpeed);
+        //Debug.Log(maxSpeed);
     }
     private void OnTriggerEnter(Collider collider)
     {

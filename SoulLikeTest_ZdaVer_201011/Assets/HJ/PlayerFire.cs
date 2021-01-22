@@ -5,6 +5,10 @@ using UnityEngine;
 
 public class PlayerFire : MonoBehaviour
 {
+    [Header("총소리")]
+    [SerializeField]
+    AudioSource FireSfx;
+
     public GameObject bullet;
     public Transform firePos;
     float currentTime = 0;
@@ -41,5 +45,7 @@ public class PlayerFire : MonoBehaviour
         t_bullet.transform.position = firePos.position;
         t_bullet.SetActive(true);*/
         Instantiate(bullet, firePos.position, firePos.rotation);
+
+        FireSfx.Play();
     }
 }
