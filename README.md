@@ -1,11 +1,5 @@
 <br />
 
-<div  align="center">
-  <img width="100%" src="https://github.com/codestates-seb/seb45_main_024/assets/85465266/4031b821-ac2e-403f-aa74-e293b092703b" alt="stackoverflow">
-</div>
-
-<br />
-
 - **`프로젝트 명` :** ZDA
 - **`프로젝트 기간` :** 2020.04 - 2021.02
 - **`한줄 소개` :** 3인칭 소울라이크 장르의 RPG 게임 중 미니게임 파트 및 UI 담당
