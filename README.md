@@ -2,7 +2,7 @@
 
 - **`프로젝트 명` :** ZDA
 - **`프로젝트 기간` :** 2020.04 - 2021.02
-- **`한줄 소개` :** 3인칭 소울라이크 장르의 RPG 게임 중 미니게임 파트 및 UI 담당
+- **`한줄 소개` :** 3인칭 소울라이크 장르 및 슈팅게임 형식의 미니게임
 - **`팀 깃허브 링크` :** <a href="https://github.com/ZDA-Tentative/ZDA_NewProject" target="_blank">📖 GitHub</a>
 
 <br />
