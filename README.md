@@ -1,40 +1,32 @@
+<br />
 
+<div  align="center">
+  <img width="100%" src="https://github.com/codestates-seb/seb45_main_024/assets/85465266/4031b821-ac2e-403f-aa74-e293b092703b" alt="stackoverflow">
+</div>
 
-[ 깃허브 단어, 사용법 ]
+<br />
 
-커밋 : 우리가 작업하는 프로젝트의 버전 단위라고 보면 됨.
-깃허브 프로그램을 키면 왼쪽에 "Change" 항목이 있고 "History" 항목이 있습니다.
+- **`프로젝트 명` :** ZDA
+- **`프로젝트 기간` :** 2020.04 - 2021.02
+- **`한줄 소개` :** 3인칭 소울라이크 장르의 RPG 게임 중 미니게임 파트 및 UI 담당
+- **`팀 깃허브 링크` :** <a href="https://github.com/ZDA-Tentative/ZDA_NewProject" target="_blank">📖 GitHub</a>
 
-[Change]
+<br />
 
-Change는 말그대로 어떤것이 바뀌었는가 입니다.
+## 기술 스택
 
-예전 프로젝트 버전과 현재 버전과 다른 점이 있는지 없는지 알려줍니다. 에를 들자면 어제 작업했던 프로젝트를 버전A 라고 합시다. 오늘 작업한 프로젝트를 B버전 B라고 합시다. 작업하기전 깃허브를 키면 "Change"에는 딱히 아무것도 안뜰겁니다. 하지만 오늘 작업후에 보면 초록색으로 뭔가가 막 적혀있는걸 볼 수 있습니다. 그게 현재 바뀐 점입니다. 그리고 빨간색으로 뭔가가 막 적혀있는것이 삭제된 부분 입니다.
+| Unity | C# |
+| :---: | :---: |
+| <div style="display: flex; align-items: flex-start;"><img src="https://techstack-generator.vercel.app/java-icon.svg" alt="icon" width="65" height="65" /></div> | <div style="display: flex; align-items: flex-start;"><img src="https://techstack-generator.vercel.app/mysql-icon.svg" alt="icon" width="65" height="65" /></div> |
 
-[ 커밋 ]
+<br />
 
-그 아래에 보면 "Summary 텍스트 박스"와 "Description 텍스트 박스" "Commit 버튼"이 있습니다. "Summary"는 작업한 커밋의 제목을 써주시면 되고 "Description"는 커밋의 설명란 입니다. 모두 올바르게 커밋이 작성된 걸 확인하면 Commit 버튼을 누르면 됩니다. Commit to master 버튼을 누르면 오늘 작업한걸 깃허브 >>데스크톱<<에 올리게 되는 겁니다.
+## 구현 기능
+- **슈팅게임 형식의 미니게임**
+  - 총알의 발사각 계산
+  - 플레이어 및 적 hp 시스템
+- **UI 배치**
+  - 게임 전반적인 UI 배치
+  - 미니게임에서 미니맵 카메라를 이용한 미니맵 UI 시스템
 
-[ History ]
-히스토리에는 말 그대로 커밋들의 과거를 볼 수 있습니다. 요건 사실 잘 써본적이 없음 날라갈까봐 무서움 ㅠㅠㅠㅠ
-
-[ Fetch origin , push origin , pull origin ] 위쪽에 검은색 항목을 보시면Fetch origin 또는 push origin 또는 pull origin 라는게 있습니다. 현재 상태에 따라 다르게 보이게 되는 버튼입니다.
-
-더 자세한 설명 : https://backlog.com/git-tutorial/kr/stepup/stepup3_1.html
-
-pull origin
-서버에 있는 버전을 가져와서 현재 버전과 병합후 서버에 올립니다.
-
-Fetch origin
-현재 서버 버전과 컴퓨터 버전과 같지 않아 패치가 필요한 상황입니다. 변경된 내용을 가져오기만 합니다.
-
-push origin
-데스크톱에 저장된 커밋을 서버에 푸시합니다. 그냥 커밋 버튼만 누르시면 데스크톱에서만 업데이트 된거고 서버에는 안올라가 집니다! 그러니 꼭 꼭 커밋하시고 푸쉬 해주세요!!
-
-!!주의사항!!
-
-일을 시작하기 전에는 프로젝트 버전을 맞춰야 합니다. 안그러면 충돌이 일어나서 작업했던게 날아가거나 이상하게 수정될 수 있습니다. 버전을 맞추는 방법은 그냥 프로젝트 시작하기 전에 깃허브 켜서 Fetch origin누르시면 됩니다. ( 아직 확실하진 않아서 확인 작업 해봐야함 )
-
-같은 스크립트를 수정 하지 않는다. A라는 스크립트를 작성중인데 다른 사람도 A를 작성하고 있다면 충돌이 일어날 수 있습니다. 그러니 스크립트 수정이 필요하면 말씀 하시고 하셔야 합니다! 만약 서로 다른 스크립트를 수정하고 있다면 그건 괜찮습니다.
-
-유니티 씬도 스크립트랑 비슷할겁니다. 그러니 씬 수정도 말씀 하시고 하셔야 합니다!
+<br />
